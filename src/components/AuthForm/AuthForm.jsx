@@ -8,14 +8,11 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
+import Signup from "./Signup";
+import Login from "./Login";
 
 const AuthForm = () => {
   const [isLogin, setIsLogin] = useState(true);
-  const [inputs, setInputs] = useState({
-    email: "",
-    password: "",
-    confirmPassword: "",
-  });
 
   return (
     <>
@@ -23,36 +20,7 @@ const AuthForm = () => {
         <VStack spacing={4}>
           <Image src="/logo.png" h={24} cursor={"pointer"} alt="Instagram" />
 
-          <Input
-            placeholder="Email"
-            value={inputs.email}
-            onChange={(e) => setInputs({ ...inputs, email: e.target.value })}
-            fontSize={14}
-            type="email"
-          />
-          <Input
-            placeholder="Password"
-            value={inputs.password}
-            onChange={(e) => setInputs({ ...inputs, password: e.target.value })}
-            fontSize={14}
-            type="password"
-          />
-
-          {!isLogin ? (
-            <Input
-              placeholder="Confirm Password"
-              fontSize={14}
-              value={inputs.confirmPassword}
-              onChange={(e) =>
-                setInputs({ ...inputs, confirmPassword: e.target.value })
-              }
-              type="password"
-            />
-          ) : null}
-
-          <Button w={"full"} colorScheme="blue" size={"sm"} fontSize={14}>
-            {isLogin ? "Log in" : "Sign Up"}
-          </Button>
+          {isLogin ? <Login /> : <Signup />}
 
           {/* {----------------OR------------} */}
           <Flex

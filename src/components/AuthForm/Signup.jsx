@@ -1,4 +1,5 @@
-import { Input } from "@chakra-ui/react";
+import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
+import { Button, Input, InputGroup, InputRightElement } from "@chakra-ui/react";
 import { useState } from "react";
 
 const Signup = () => {
@@ -8,6 +9,8 @@ const Signup = () => {
     fullName: "",
     username: "",
   });
+
+  const [showPassword, setShowPassword] = useState(false);
   return (
     <>
       <Input
@@ -16,12 +19,14 @@ const Signup = () => {
         onChange={(e) => setInputs({ ...inputs, email: e.target.value })}
         fontSize={14}
         type="email"
+        size={"sm"}
       />
       <Input
         placeholder="Username"
         value={inputs.username}
         onChange={(e) => setInputs({ ...inputs, username: e.target.value })}
         fontSize={14}
+        size={"sm"}
         type="text"
       />
       <Input
@@ -29,15 +34,33 @@ const Signup = () => {
         value={inputs.fullName}
         onChange={(e) => setInputs({ ...inputs, fullName: e.target.value })}
         fontSize={14}
+        size={"sm"}
         type="text"
       />
-      <Input
-        placeholder="Password"
-        value={inputs.password}
-        onChange={(e) => setInputs({ ...inputs, password: e.target.value })}
-        fontSize={14}
-        type="password"
-      />
+      <InputGroup>
+        <Input
+          placeholder="Password"
+          value={inputs.password}
+          onChange={(e) => setInputs({ ...inputs, password: e.target.value })}
+          fontSize={14}
+          size={"sm"}
+          type={showPassword ? "text" : "password"}
+        />
+
+        <InputRightElement h={"full"}>
+          <Button
+            variant={"ghost"}
+            size={"sm"}
+            onClick={() => setShowPassword(!showPassword)}
+          >
+            {showPassword ? <ViewIcon /> : <ViewOffIcon />}
+          </Button>
+        </InputRightElement>
+      </InputGroup>
+
+      <Button w={"full"} colorScheme="blue" size={"sm"} fontSize={14}>
+        Sign Up
+      </Button>
     </>
   );
 };
