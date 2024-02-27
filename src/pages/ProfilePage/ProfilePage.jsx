@@ -31,7 +31,7 @@ const ProfilePage = () => {
         flexDirection={"column"}
       >
         {!isLoading && userProfile && <ProfileHeader />}
-        {!isLoading && <ProfileHeaderSkelaton />}
+        {isLoading && <ProfileHeaderSkelaton />}
       </Flex>
 
       <Flex

@@ -6,8 +6,10 @@ import {
   Text,
   VStack,
 } from "@chakra-ui/react";
+import useuserProfileStore from "../../store/userProfileStore";
 
 const ProfileHeader = () => {
+  const { userProfile } = useuserProfileStore();
   return (
     <Flex
       gap={{ base: 4, sm: 10 }}
@@ -20,11 +22,7 @@ const ProfileHeader = () => {
         alignSelf={"flex-start"}
         mx={"auto"}
       >
-        <Avatar
-          name="As a Programmer"
-          src="/profileepic.png"
-          alt="As a programmer logo"
-        />
+        <Avatar src={userProfile.profilePicURL} alt="As a programmer logo" />
       </AvatarGroup>
 
       <VStack alignItems={"start"} gap={2} mx={"auto"} flex={1}>
@@ -35,7 +33,9 @@ const ProfileHeader = () => {
           alignItems={"center"}
           w={"full"}
         >
-          <Text fontSize={{ base: "sm", md: "lg" }}>asaprogrammer_</Text>
+          <Text fontSize={{ base: "sm", md: "lg" }}>
+            {userProfile.username}
+          </Text>
 
           <Flex gap={4} alignItems={"center"} justifyContent={"center"}>
             <Button
@@ -52,21 +52,21 @@ const ProfileHeader = () => {
         <Flex alignItems={"center"} gap={{ base: 2, sm: 4 }}>
           <Text fontSize={{ base: "xs", md: "sm" }}>
             <Text as="span" fontWeight={"bold"} mr={1}>
-              4
+              {userProfile.posts.length}
             </Text>
             Posts
           </Text>
 
           <Text fontSize={{ base: "xs", md: "sm" }}>
             <Text as="span" fontWeight={"bold"} mr={1}>
-              149
+              {userProfile.followers.length}
             </Text>
             Follwers
           </Text>
 
           <Text fontSize={{ base: "xs", md: "sm" }}>
             <Text as="span" fontWeight={"bold"} mr={1}>
-              175
+              {userProfile.following.length}
             </Text>
             Following
           </Text>
@@ -74,12 +74,10 @@ const ProfileHeader = () => {
 
         <Flex alignItems={"center"} gap={4}>
           <Text fontSize={"sm"} fontWeight={"bold"}>
-            As a Programmer
+            {userProfile.fullName}
           </Text>
         </Flex>
-        <Text fontSize={"sm"}>
-          Tutorials that are meant to level up your skills as a programmer
-        </Text>
+        <Text fontSize={"sm"}>{userProfile.bio}</Text>
       </VStack>
     </Flex>
   );
