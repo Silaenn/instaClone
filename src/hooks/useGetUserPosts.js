@@ -20,7 +20,7 @@ const useGetUserPosts = () => {
       try {
         const q = query(
           collection(firestore, "posts"),
-          where("createdBy", "==", userProfile.uid)
+          where("createBy", "==", userProfile.uid)
         );
         const querySnapshot = await getDocs(q);
 
