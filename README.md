@@ -6,6 +6,14 @@ Instagram Clone
 
 ![Instagram-Clone (2)](https://github.com/Silaenn/instaClone/assets/131638765/67eb2760-06a7-4863-b0fb-50acaa88c23f)
 
+## Environment Variables
+
+```
+VITE_CLOUDINARY_CLOUD_NAME=your_cloud_name
+VITE_CLOUDINARY_UPLOAD_PRESET=your_unsigned_upload_preset
+```
+
+Create an **unsigned upload preset** in Cloudinary and use it here for image uploads.
 
 # React + Vite
 

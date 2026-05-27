@@ -33,8 +33,8 @@ import {
   doc,
   updateDoc,
 } from "firebase/firestore";
-import { firestore, storage } from "../../firebase/firebase";
-import { getDownloadURL, ref, uploadString } from "firebase/storage";
+import { firestore } from "../../firebase/firebase";
+import { uploadImageToCloudinary } from "../../utils/cloudinary";
 const CreatePost = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [caption, setCaption] = useState("");
@@ -160,15 +160,19 @@ function useCreatePost() {
     try {
       const postDocRef = await addDoc(collection(firestore, "posts"), newPost);
       const userDocRef = doc(firestore, "users", authUser.uid);
-      const imageRef = ref(storage, `posts/${postDocRef.id}`);
-
       await updateDoc(userDocRef, { posts: arrayUnion(postDocRef.id) });
-      await uploadString(imageRef, selectedFile, "data_url");
-      const downloadURL = await getDownloadURL(imageRef);
+      const uploadResult = await uploadImageToCloudinary({
+        file: selectedFile,
+        folder: "posts",
+      });
 
-      await updateDoc(postDocRef, { imageURL: downloadURL });
+      await updateDoc(postDocRef, {
+        imageURL: uploadResult.url,
+        imageDeleteToken: uploadResult.deleteToken,
+      });
 
-      newPost.imageURL = downloadURL;
+      newPost.imageURL = uploadResult.url;
+      newPost.imageDeleteToken = uploadResult.deleteToken;
 
       if (userProfile.uid === authUser.uid)
         createPost({ ...newPost, id: postDocRef.id });

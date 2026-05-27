@@ -22,12 +22,12 @@ import PostFooter from "../FeedPosts/PostFooter";
 import useUserProfileStore from "../../store/userProfileStore";
 import useAuthStore from "../../store/authStore";
 import { useState } from "react";
-import { deleteObject, ref } from "firebase/storage";
-import { firestore, storage } from "../../firebase/firebase";
+import { firestore } from "../../firebase/firebase";
 import { arrayRemove, deleteDoc, doc, updateDoc } from "firebase/firestore";
 import useShowToast from "../../hooks/useShowToast";
 import usePostStore from "../../store/postStore";
 import Caption from "../Comment/Caption";
+import { deleteImageFromCloudinary } from "../../utils/cloudinary";
 const ProfilePost = ({ post }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const userProfile = useUserProfileStore((state) => state.userProfile);
@@ -44,8 +44,9 @@ const ProfilePost = ({ post }) => {
     if (isDeleting) return;
 
     try {
-      const imageRef = ref(storage, `posts/${post.id}`);
-      await deleteObject(imageRef);
+      if (post.imageDeleteToken) {
+        await deleteImageFromCloudinary(post.imageDeleteToken);
+      }
       const userRef = doc(firestore, "users", authUser.uid);
       await deleteDoc(doc(firestore, "posts", post.id));
 
