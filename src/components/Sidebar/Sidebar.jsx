@@ -11,15 +11,25 @@ const Sidebar = () => {
   return (
     <Box
       height={"100vh"}
-      borderRight={"1px solid"}
-      borderColor={"whiteAlpha.300"}
+      borderRight={"none"}
       py={8}
       position={"sticky"}
       top={0}
       left={0}
       px={{ base: 2, md: 4 }}
     >
-      <Flex direction={"column"} gap={10} w="full" height={"full"}>
+      <Flex
+        direction={"column"}
+        gap={10}
+        w="full"
+        height={"full"}
+        bg="white"
+        border="2px solid"
+        borderColor="retro.border"
+        borderRadius="24px"
+        p={4}
+        boxShadow="6px 6px 0px 0px #2D3748"
+      >
         <Link
           to={"/"}
           as={RouterLink}

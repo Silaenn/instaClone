@@ -34,7 +34,7 @@ const PostFooter = ({ post, isProfilePage, creatorProfile }) => {
   };
 
   return (
-    <Box mb={10} mt={"auto"}>
+    <Box mb={0} mt={"auto"}>
       <Flex alignItems={"center"} gap={4} w={"full"} pt={0} mb={2} mt={4}>
         <Box onClick={handleLikePost} cursor={"pointer"} fontSize={18}>
           {!isLiked ? <NotificationsLogo /> : <UnlikeLogo />}
@@ -99,10 +99,10 @@ const PostFooter = ({ post, isProfilePage, creatorProfile }) => {
             <InputRightElement>
               <Button
                 fontSize={14}
-                color={"blue.500"}
+                color={"retro.blue"}
                 fontWeight={600}
                 cursor={"pointer"}
-                _hover={{ color: "white" }}
+                _hover={{ color: "retro.pink" }}
                 bg={"transparent"}
                 onClick={handleSubmitComment}
                 isLoading={isCommenting}
