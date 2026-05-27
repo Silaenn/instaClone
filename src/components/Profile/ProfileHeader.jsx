@@ -1,6 +1,6 @@
 import {
   Avatar,
-  AvatarGroup,
+  Box,
   Button,
   Flex,
   Text,
@@ -30,14 +30,15 @@ const ProfileHeader = () => {
       py={10}
       direction={{ base: "column", sm: "row" }}
     >
-      <AvatarGroup
+      <Avatar
         size={{ base: "xl", md: "2xl" }}
-        justifySelf={"center"}
-        alignSelf={"flex-start"}
+        src={userProfile.profilePicURL}
+        border="4px solid"
+        borderColor="retro.pink"
+        p="2px"
+        bg="retro.blue"
         mx={"auto"}
-      >
-        <Avatar src={userProfile.profilePicURL} alt="As a programmer logo" />
-      </AvatarGroup>
+      />
 
       <VStack alignItems={"start"} gap={2} mx={"auto"} flex={1}>
         <Flex
@@ -80,27 +81,19 @@ const ProfileHeader = () => {
           )}
         </Flex>
 
-        <Flex alignItems={"center"} gap={{ base: 2, sm: 4 }}>
-          <Text fontSize={{ base: "xs", md: "sm" }}>
-            <Text as="span" fontWeight={"bold"} mr={1}>
-              {userProfile.posts.length}
-            </Text>
+        <Flex gap={{ base: 2, sm: 4 }} alignItems={"center"} justifyContent={{ base: "center", sm: "flex-start" }}>
+          <Box bg="white" p={2} border="2px solid" borderColor="retro.border" borderRadius="lg" boxShadow="4px 4px 0px 0px #2D3748">
+            <Text as="span" fontWeight={"bold"} mr={1}>{userProfile.posts.length}</Text>
             Posts
-          </Text>
-
-          <Text fontSize={{ base: "xs", md: "sm" }}>
-            <Text as="span" fontWeight={"bold"} mr={1}>
-              {userProfile.followers.length}
-            </Text>
-            Follwers
-          </Text>
-
-          <Text fontSize={{ base: "xs", md: "sm" }}>
-            <Text as="span" fontWeight={"bold"} mr={1}>
-              {userProfile.following.length}
-            </Text>
+          </Box>
+          <Box bg="white" p={2} border="2px solid" borderColor="retro.border" borderRadius="lg" boxShadow="4px 4px 0px 0px #2D3748">
+            <Text as="span" fontWeight={"bold"} mr={1}>{userProfile.followers.length}</Text>
+            Followers
+          </Box>
+          <Box bg="white" p={2} border="2px solid" borderColor="retro.border" borderRadius="lg" boxShadow="4px 4px 0px 0px #2D3748">
+            <Text as="span" fontWeight={"bold"} mr={1}>{userProfile.following.length}</Text>
             Following
-          </Text>
+          </Box>
         </Flex>
 
         <Flex alignItems={"center"} gap={4}>
