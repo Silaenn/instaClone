@@ -24,11 +24,10 @@ const Sidebar = () => {
         w="full"
         height={"full"}
         bg="white"
-        border="2px solid"
-        borderColor="retro.border"
-        borderRadius="24px"
+        border="3px solid black"
+        borderRadius="0px"
         p={4}
-        boxShadow="6px 6px 0px 0px #2D3748"
+        boxShadow="8px 8px 0px 0px #000"
       >
         <Link
           to={"/"}
@@ -37,18 +36,20 @@ const Sidebar = () => {
           display={{ base: "none", md: "block" }}
           cursor={"pointer"}
         >
-          <InstagramLogo />
+          <Box p={2} bg="black" color="white" display="inline-block">
+            <InstagramLogo />
+          </Box>
         </Link>
 
         <Link
           to={"/"}
           as={RouterLink}
           p={2}
-          borderRadius={6}
           display={{ base: "block", md: "none" }}
           cursor={"pointer"}
+          bg="black"
           _hover={{
-            bg: "whiteAlpha.200",
+            bg: "retro.main",
           }}
           w={{ base: 10 }}
         >
@@ -72,12 +73,17 @@ const Sidebar = () => {
             onClick={handleLogout}
             alignItems={"center"}
             gap={4}
-            _hover={{ bg: "whiteAlpha.400" }}
-            borderRadius={6}
+            bg={"retro.pink"}
+            color={"white"}
+            border={"2px solid black"}
+            _hover={{ bg: "black", color: "white", transform: "translate(2px, 2px)", boxShadow: "none" }}
+            boxShadow={"4px 4px 0px 0px #000"}
+            borderRadius={0}
             p={2}
             w={{ base: 10, md: "full" }}
             mt={"auto"}
             justifyContent={{ base: "center", md: "flex-start" }}
+            transition={"0.1s"}
           >
             <BiLogOut size={25} />
             <Button
@@ -85,6 +91,9 @@ const Sidebar = () => {
               variant={"ghost"}
               _hover={{ bg: "transparent" }}
               isLoading={isLoggingOut}
+              color="inherit"
+              p={0}
+              height="auto"
             >
               LogOut
             </Button>

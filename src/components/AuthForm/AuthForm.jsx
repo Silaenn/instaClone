@@ -17,9 +17,31 @@ const AuthForm = () => {
 
   return (
     <>
-      <Box border={"1px solid gray"} borderRadius={4} padding={5}>
-        <VStack spacing={4}>
-          <Image src="/logo.png" h={24} cursor={"pointer"} alt="Instagram" />
+      <Box
+        bg={"white"}
+        border={"3px solid black"}
+        borderRadius={0}
+        padding={8}
+        boxShadow={"8px 8px 0px 0px #000"}
+      >
+        <VStack spacing={6}>
+          <Text
+            fontSize={"5xl"}
+            fontWeight={900}
+            fontFamily="'Space Grotesk', sans-serif"
+            letterSpacing={"-2px"}
+            cursor={"pointer"}
+            textTransform={"uppercase"}
+            lineHeight={1}
+            bg="black"
+            color="white"
+            px={4}
+            py={2}
+            border="4px solid black"
+            boxShadow="6px 6px 0px 0px #BEF264"
+          >
+            VIBE
+          </Text>
 
           {isLogin ? <Login /> : <Signup />}
 
@@ -31,26 +53,34 @@ const AuthForm = () => {
             gap={1}
             w={"full"}
           >
-            <Box flex={2} h={"1px"} bg={"gray.400"} />
-            <Text mx={1} color={"white"}>
+            <Box flex={2} h={"2px"} bg={"black"} />
+            <Text mx={2} color={"black"} fontWeight={"bold"}>
               OR
             </Text>
-            <Box flex={2} h={"1px"} bg={"gray.400"} />
+            <Box flex={2} h={"2px"} bg={"black"} />
           </Flex>
 
           <GoogleAuth prefix={isLogin ? "Log in" : "Sign up"} />
         </VStack>
       </Box>
 
-      <Box border={"1px solid gray"} borderRadius={4} padding={5}>
+      <Box
+        bg={"retro.pink"}
+        border={"3px solid black"}
+        borderRadius={0}
+        padding={5}
+        boxShadow={"8px 8px 0px 0px #000"}
+      >
         <Flex alignItems={"center"} justifyContent={"center"}>
-          <Box mx={2} fontSize={14}>
-            {isLogin ? "Do't habe an account?" : "Already have an account?"}
+          <Box mx={2} fontSize={14} fontWeight={"bold"} color={"white"}>
+            {isLogin ? "Don't have an account?" : "Already have an account?"}
           </Box>
 
           <Box
             onClick={() => setIsLogin(!isLogin)}
-            color={"blue.500"}
+            color={"black"}
+            fontWeight={"extrabold"}
+            textDecoration={"underline"}
             cursor={"pointer"}
           >
             {isLogin ? "Sign Up" : "Log in"}

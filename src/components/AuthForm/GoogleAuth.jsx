@@ -55,9 +55,18 @@ const GoogleAuth = ({ prefix }) => {
         alignItems={"center"}
         justifyContent={"center"}
         onClick={handleGoogleAuth}
+        bg="retro.main"
+        border="3px solid black"
+        borderRadius={0}
+        p={2}
+        w="full"
+        boxShadow="4px 4px 0px 0px #000"
+        _hover={{ transform: "translate(-2px, -2px)", boxShadow: "6px 6px 0px 0px #000" }}
+        _active={{ transform: "translate(2px, 2px)", boxShadow: "none" }}
+        transition="0.1s"
       >
         <Image src="/google.png" w={6} alt="Google logo" />
-        <Text mx="2" color={"blue.500"}>
+        <Text mx="2" color={"black"} fontWeight={900} textTransform="uppercase">
           {prefix} with Google
         </Text>
       </Flex>

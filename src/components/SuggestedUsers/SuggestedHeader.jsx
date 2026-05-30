@@ -8,30 +8,32 @@ const SuggestedHeader = () => {
 
   if (!authUser) return null;
   return (
-    <Flex justifyContent={"space-between"} alignItems={"center"} w={"full"}>
-      <Flex alignItems={"center"} gap={2}>
+    <Flex justifyContent={"space-between"} alignItems={"center"} w={"full"} p={3} border="3px solid black" bg="white" boxShadow="6px 6px 0px 0px #000">
+      <Flex alignItems={"center"} gap={3}>
         <Link to={`${authUser.username}`}>
-          <Avatar size={"lg"} src={authUser.profilePicURL} />
+          <Avatar size={"lg"} src={authUser.profilePicURL} border="3px solid black" borderRadius={0} />
         </Link>
         <Link to={`${authUser.username}`}>
-          <Text fontSize={12} fontWeight={"bold"}>
+          <Text fontSize={16} fontWeight={900} textTransform="uppercase">
             {authUser.username}
           </Text>
         </Link>
       </Flex>
 
       <Button
-        size={"xs"}
-        background={"transparent"}
-        _hover={{ background: "transparent" }}
-        fontSize={14}
-        fontWeight={"medium"}
-        color={"blue.400"}
-        cursor={"pointer"}
+        size={"sm"}
+        bg={"retro.pink"}
+        color={"white"}
+        border="2px solid black"
+        _hover={{ bg: "black" }}
+        fontSize={12}
+        fontWeight={900}
+        borderRadius={0}
+        boxShadow="3px 3px 0px 0px #000"
         onClick={handleLogout}
         isLoading={isLoggingOut}
       >
-        Log out
+        LOG OUT
       </Button>
     </Flex>
   );

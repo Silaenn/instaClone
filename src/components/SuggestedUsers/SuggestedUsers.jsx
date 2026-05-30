@@ -14,16 +14,17 @@ const SuggestedUsers = () => {
 
       {suggestedUsers.length !== 0 && (
         <Flex alignItems={"center"} justifyContent={"space-between"} w={"full"}>
-          <Text fontSize={12} fontWeight={"bold"} color={"gray.500"}>
+          <Text fontSize={14} fontWeight={900} color={"black"} textTransform="uppercase">
             Suggested for you
           </Text>
           <Text
             fontSize={12}
-            fontWeight={"bold"}
-            _hover={{ color: "gray.400" }}
+            fontWeight={900}
+            _hover={{ color: "retro.pink" }}
             cursor={"pointer"}
+            textDecoration="underline"
           >
-            See All
+            SEE ALL
           </Text>
         </Flex>
       )}
@@ -32,15 +33,17 @@ const SuggestedUsers = () => {
         <SuggestedUser user={user} key={user.id} />
       ))}
 
-      <Box fontSize={12} color={"gray.500"} mt={5} alignSelf={"start"}>
-        © 2023 Built By{" "}
+      <Box fontSize={12} color={"black"} fontWeight="bold" mt={5} alignSelf={"start"}>
+        © 2024 BUILT BY{" "}
         <Link
           href="https://www.youtube.com/@asaprogrammer_"
           target="_blank"
-          color="blue.500"
+          color="retro.pink"
           fontSize={14}
+          fontWeight={900}
+          textDecoration="underline"
         >
-          As a Programmer
+          VIBE TEAM
         </Link>
       </Box>
     </VStack>

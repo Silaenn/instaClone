@@ -68,12 +68,14 @@ const ProfilePost = ({ post }) => {
       <GridItem
         onClick={onOpen}
         cursor={"pointer"}
-        borderRadius={4}
+        borderRadius={0}
         overflow={"hidden"}
-        border={"1px solid"}
-        borderColor={"whiteAlpha.300"}
+        border={"3px solid black"}
         position={"relative"}
         aspectRatio={1 / 1}
+        boxShadow={"4px 4px 0px 0px #000"}
+        transition={"0.1s"}
+        _hover={{ transform: "translate(-2px, -2px)", boxShadow: "6px 6px 0px 0px #000" }}
       >
         <Flex
           opacity={0}
@@ -89,14 +91,14 @@ const ProfilePost = ({ post }) => {
           justifyContent={"center"}
         >
           <Flex alignItems={"center"} justifyContent={"center"} gap={50}>
-            <Flex>
+            <Flex color="white">
               <AiFillHeart size={20} />
               <Text fontWeight={"bold"} ml={2}>
                 {post.likes.length}
               </Text>
             </Flex>
 
-            <Flex>
+            <Flex color="white">
               <FaComment size={20} />
               <Text fontWeight={"bold"} ml={2}>
                 {post.comments.length}
@@ -121,24 +123,26 @@ const ProfilePost = ({ post }) => {
         size={{ base: "3xl", md: "5xl" }}
       >
         <ModalOverlay />
-        <ModalContent>
-          <ModalCloseButton />
-          <ModalBody bg={"black"} pb={5}>
+        <ModalContent border="4px solid black" borderRadius={0} boxShadow="12px 12px 0px 0px #000">
+          <ModalCloseButton zIndex={10} bg="retro.pink" borderRadius={0} border="2px solid black" top="-10px" right="-10px" />
+          <ModalBody bg={"retro.bg"} pb={5} p={0}>
             <Flex
-              gap={4}
-              w={{ base: "90%", sm: "70%", md: "full" }}
+              gap={0}
+              w={"full"}
               mx={"auto"}
               maxH={"90vh"}
               minH={"50vh"}
+              direction={{ base: "column", md: "row" }}
             >
               <Flex
-                borderRadius={4}
+                borderRadius={0}
                 overflow={"hidden"}
-                border={"1px solid"}
-                borderColor={"whiteAlpha.300"}
+                borderRight={{ md: "3px solid black" }}
+                borderBottom={{ base: "3px solid black", md: "none" }}
                 flex={1.5}
                 justifyContent={"center"}
                 alignItems={"center"}
+                bg="black"
               >
                 <Image src={post.imageURL} alt="profile post" />
               </Flex>
@@ -146,7 +150,8 @@ const ProfilePost = ({ post }) => {
               <Flex
                 flex={1}
                 flexDir={"column"}
-                px={10}
+                px={8}
+                py={6}
                 display={{ base: "none", md: "flex" }}
               >
                 <Flex alignItems={"center"} justifyContent={"space-between"}>
@@ -154,9 +159,10 @@ const ProfilePost = ({ post }) => {
                     <Avatar
                       src={userProfile.profilePicURL}
                       size={"sm"}
-                      name="As a Programmer"
+                      name={userProfile.username}
+                      border="2px solid black"
                     />
-                    <Text fontWeight={"bold"} fontSize={12}>
+                    <Text fontWeight={900} fontSize={14} textTransform="uppercase">
                       {userProfile.username}
                     </Text>
                   </Flex>
@@ -164,24 +170,27 @@ const ProfilePost = ({ post }) => {
                   {authUser?.uid === userProfile.uid && (
                     <Button
                       size={"sm"}
-                      bg={"transparent"}
-                      _hover={{ bg: "whiteAlpha.300", color: "red.600" }}
-                      borderRadius={4}
+                      bg={"retro.pink"}
+                      color="white"
+                      border="2px solid black"
+                      _hover={{ bg: "black", color: "white" }}
+                      borderRadius={0}
                       onClick={handleDeletePost}
-                      p={1}
                       isLoading={isDeleting}
+                      boxShadow="2px 2px 0px 0px #000"
                     >
                       <MdDelete size={20} cursor="pointer" />
                     </Button>
                   )}
                 </Flex>
-                <Divider my={4} bg={"gray.500"} />
+                <Divider my={4} borderColor={"black"} borderBottomWidth="2px" opacity={1} />
 
                 <VStack
                   w="full"
                   alignItems={"start"}
                   maxH={"350px"}
                   overflowY={"auto"}
+                  flex={1}
                 >
                   {/* CAPTION */}
                   {post.caption && <Caption post={post} />}
@@ -190,7 +199,7 @@ const ProfilePost = ({ post }) => {
                     <Comment key={comment.id} comment={comment} />
                   ))}
                 </VStack>
-                <Divider my={4} bg={"gray.800"} />
+                <Divider my={4} borderColor={"black"} borderBottomWidth="2px" opacity={1} />
 
                 <PostFooter isProfilePage={true} post={post} />
               </Flex>

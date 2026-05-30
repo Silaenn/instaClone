@@ -7,37 +7,38 @@ const ProfileTabs = () => {
       justifyContent={"center"}
       gap={{ base: 4, sm: 10 }}
       textTransform={"uppercase"}
-      fontWeight={"bold"}
+      fontWeight={900}
     >
       <Flex
-        borderTop={"1px solid white"}
+        borderTop={"4px solid black"}
         alignItems={"center"}
         p="3"
-        gap={1}
+        gap={2}
         cursor={"pointer"}
+        _hover={{ bg: "white" }}
       >
         <Box fontSize={20}>
-          <BsGrid3X3 />
+          <BsGrid3X3 strokeWidth={1} />
         </Box>
-        <Text fontSize={12} display={{ base: "none", sm: "block" }}>
+        <Text fontSize={14} display={{ base: "none", sm: "block" }}>
           Posts
         </Text>
       </Flex>
 
-      <Flex alignItems={"center"} p="3" gap={1} cursor={"pointer"}>
+      <Flex alignItems={"center"} p="3" gap={2} cursor={"pointer"} _hover={{ bg: "white" }}>
         <Box fontSize={20}>
           <BsBookmark />
         </Box>
-        <Text fontSize={12} display={{ base: "none", sm: "block" }}>
+        <Text fontSize={14} display={{ base: "none", sm: "block" }}>
           Saved
         </Text>
       </Flex>
 
-      <Flex alignItems={"center"} p="3" gap={1} cursor={"pointer"}>
+      <Flex alignItems={"center"} p="3" gap={2} cursor={"pointer"} _hover={{ bg: "white" }}>
         <Box fontSize={20}>
-          <BsSuitHeart fontWeight={"bold"} />
+          <BsSuitHeart />
         </Box>
-        <Text fontSize={12} display={{ base: "none", sm: "block" }}>
+        <Text fontSize={14} display={{ base: "none", sm: "block" }}>
           Likes
         </Text>
       </Flex>

@@ -29,15 +29,14 @@ const Login = () => {
       />
 
       {error && (
-        <Alert status="error" fontSize={13} p={2} borderRadius={4}>
-          <AlertIcon fontSize={12} />
+        <Alert status="error" fontSize={13} p={2} borderRadius={0} border="2px solid black" bg="retro.pink" color="white">
+          <AlertIcon fontSize={12} color="white" />
           {error.message}
         </Alert>
       )}
 
       <Button
         w={"full"}
-        colorScheme="blue"
         size={"sm"}
         fontSize={14}
         onClick={() => login(inputs)}

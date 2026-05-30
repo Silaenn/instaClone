@@ -49,21 +49,21 @@ const PostFooter = ({ post, isProfilePage, creatorProfile }) => {
         </Box>
       </Flex>
 
-      <Text fontWeight={600} fontSize={"sm"}>
+      <Text fontWeight={800} fontSize={"sm"} color="black">
         {likes} likes
       </Text>
 
       {isProfilePage && (
-        <Text fontSize="12" color={"gray"}>
+        <Text fontSize="12" color={"black"} opacity={0.6}>
           Posted {timeAgo(post.createdAt)}
         </Text>
       )}
 
       {!isProfilePage && (
         <>
-          <Text fontSize="sm" fontWeight={700}>
+          <Text fontSize="sm" fontWeight={800}>
             {creatorProfile?.username}{" "}
-            <Text as="span" fontWeight={400}>
+            <Text as="span" fontWeight={500}>
               {post.caption}
             </Text>
           </Text>
@@ -71,8 +71,11 @@ const PostFooter = ({ post, isProfilePage, creatorProfile }) => {
           {post.comments.length > 0 && (
             <Text
               fontSize="sm"
-              color={"gray"}
+              color={"black"}
+              opacity={0.6}
               cursor={"pointer"}
+              fontWeight={"bold"}
+              textDecoration={"underline"}
               onClick={onOpen}
             >
               View all {post.comments.length} comments
@@ -86,28 +89,34 @@ const PostFooter = ({ post, isProfilePage, creatorProfile }) => {
       )}
 
       {authUser && (
-        <Flex alignItems={"center"} gap={2} justifyContent={"space-between"}>
+        <Flex alignItems={"center"} gap={2} justifyContent={"space-between"} mt={4}>
           <InputGroup>
             <Input
-              variant={"flushed"}
+              variant={"outline"}
               placeholder={"Add a comment..."}
               fontSize={14}
               onChange={(e) => setComment(e.target.value)}
               value={comment}
               ref={commentREf}
+              bg="white"
+              borderWidth="2px"
+              borderRadius={0}
             />
-            <InputRightElement>
+            <InputRightElement width="4.5rem">
               <Button
-                fontSize={14}
-                color={"retro.blue"}
-                fontWeight={600}
-                cursor={"pointer"}
-                _hover={{ color: "retro.pink" }}
-                bg={"transparent"}
+                size="sm"
+                bg="retro.main"
+                color="black"
+                fontWeight={800}
+                borderRadius={0}
+                borderLeft="2px solid black"
+                _hover={{ bg: "black", color: "white" }}
                 onClick={handleSubmitComment}
                 isLoading={isCommenting}
+                h="full"
+                w="full"
               >
-                Post
+                POST
               </Button>
             </InputRightElement>
           </InputGroup>

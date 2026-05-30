@@ -38,8 +38,7 @@ const ProfilePage = () => {
         px={{ base: 2, sm: 4 }}
         maxW={"full"}
         mx={"auto"}
-        borderTop={"1px solid"}
-        borderColor={"whiteAlpha.300"}
+        borderTop={"3px solid black"}
         direction={"column"}
       >
         <ProfileTabs />
@@ -77,16 +76,23 @@ const ProfileHeaderSkelaton = () => {
 
 const UserNotFound = () => {
   return (
-    <Flex flexDir={"column"} textAlign={"center"} mx={"auto"}>
-      <Text fontSize={"2xl"}>User Not Found</Text>
+    <Flex flexDir={"column"} textAlign={"center"} mx={"auto"} mt={20} p={10} border="4px solid black" bg="white" boxShadow="10px 10px 0px 0px #000">
+      <Text fontSize={"4xl"} fontWeight={900}>USER NOT FOUND</Text>
       <Link
         as={RouterLink}
         to={"/"}
-        color={"blue.500"}
+        bg={"retro.main"}
+        color={"black"}
+        border="3px solid black"
+        p={2}
+        fontWeight={900}
         w={"max-content"}
         mx={"auto"}
+        mt={4}
+        boxShadow="4px 4px 0px 0px #000"
+        _hover={{ transform: "translate(-2px, -2px)", boxShadow: "6px 6px 0px 0px #000" }}
       >
-        Go Home
+        GO HOME
       </Link>
     </Flex>
   );

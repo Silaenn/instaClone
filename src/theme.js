@@ -9,11 +9,11 @@ const colors = {
   retro: {
     bg: "#FFFBEB",
     surface: "#FFFFFF",
-    text: "#2D3748",
-    pink: "#F472B6",
-    blue: "#38BDF8",
-    yellow: "#FBBF24",
-    border: "#2D3748",
+    text: "#000000",
+    main: "#BEF264", // Lime Green from sample
+    pink: "#F472B6", // Pink from sample
+    cyan: "#22D3EE",
+    border: "#000000",
   },
 };
 
@@ -36,10 +36,10 @@ const styles = {
       bg: "retro.bg",
     },
     "::-webkit-scrollbar-thumb": {
-      bg: "retro.pink",
-      borderRadius: "full",
-      border: "3px solid",
-      borderColor: "retro.bg",
+      bg: "retro.main",
+      borderRadius: "0px",
+      border: "2px solid",
+      borderColor: "retro.border",
     },
   }),
 };
@@ -47,23 +47,78 @@ const styles = {
 const components = {
   Button: {
     baseStyle: {
-      borderRadius: "full",
-      fontWeight: "bold",
-      transition: "all 0.2s",
+      borderRadius: "0px",
+      fontWeight: "800",
+      textTransform: "uppercase",
+      border: "2px solid",
+      borderColor: "black",
+      transition: "all 0.1s",
       _active: {
         transform: "translate(2px, 2px)",
+        boxShadow: "0px 0px 0px 0px #000",
       },
     },
     variants: {
-      retro: {
-        bg: "retro.pink",
-        color: "white",
-        border: "2px solid",
-        borderColor: "retro.border",
-        boxShadow: "4px 4px 0px 0px #2D3748",
+      solid: {
+        bg: "retro.main",
+        boxShadow: "4px 4px 0px 0px #000",
         _hover: {
-          bg: "pink.400",
+          bg: "retro.main",
+          transform: "translate(-2px, -2px)",
+          boxShadow: "6px 6px 0px 0px #000",
         },
+      },
+      outline: {
+        bg: "white",
+        boxShadow: "4px 4px 0px 0px #000",
+        _hover: {
+          bg: "white",
+          transform: "translate(-2px, -2px)",
+          boxShadow: "6px 6px 0px 0px #000",
+        },
+      },
+      ghost: {
+        border: "none",
+        _hover: {
+          bg: "retro.pink",
+          color: "white",
+        },
+      },
+    },
+  },
+  Input: {
+    variants: {
+      outline: {
+        field: {
+          borderRadius: "0px",
+          border: "2px solid",
+          borderColor: "black",
+          bg: "white",
+          color: "black",
+          fontWeight: "bold",
+          _placeholder: {
+            color: "black",
+            opacity: 0.6,
+          },
+          _focus: {
+            borderColor: "black",
+            boxShadow: "4px 4px 0px 0px #000",
+          },
+        },
+      },
+    },
+    defaultProps: {
+      variant: "outline",
+    },
+  },
+  Modal: {
+    baseStyle: {
+      dialog: {
+        borderRadius: "0px",
+        border: "3px solid",
+        borderColor: "black",
+        boxShadow: "8px 8px 0px 0px #000",
+        bg: "retro.bg",
       },
     },
   },

@@ -33,11 +33,11 @@ const ProfileHeader = () => {
       <Avatar
         size={{ base: "xl", md: "2xl" }}
         src={userProfile.profilePicURL}
-        border="4px solid"
-        borderColor="retro.pink"
+        border="4px solid black"
         p="2px"
-        bg="retro.blue"
+        bg="retro.main"
         mx={"auto"}
+        borderRadius={0}
       />
 
       <VStack alignItems={"start"} gap={2} mx={"auto"} flex={1}>
@@ -48,15 +48,14 @@ const ProfileHeader = () => {
           alignItems={"center"}
           w={"full"}
         >
-          <Text fontSize={{ base: "sm", md: "lg" }}>
+          <Text fontSize={{ base: "md", md: "2xl" }} fontWeight={900} textTransform="uppercase">
             {userProfile.username}
           </Text>
           {visitingOwnProfileAndAuth && (
             <Flex gap={4} alignItems={"center"} justifyContent={"center"}>
               <Button
-                bg={"white"}
+                bg={"retro.main"}
                 color={"black"}
-                _hover={{ bg: "whiteAlpha.800" }}
                 size={{ base: "xs", md: "sm" }}
                 onClick={onOpen}
               >
@@ -68,9 +67,8 @@ const ProfileHeader = () => {
           {visitingAnotherProfileAndAuth && (
             <Flex gap={4} alignItems={"center"} justifyContent={"center"}>
               <Button
-                bg={"blue.500"}
-                color={"white"}
-                _hover={{ bg: "blue.600" }}
+                bg={isFollowing ? "black" : "retro.main"}
+                color={isFollowing ? "white" : "black"}
                 size={{ base: "xs", md: "sm" }}
                 onClick={handleFollowUser}
                 isLoading={isUpdating}
@@ -82,16 +80,16 @@ const ProfileHeader = () => {
         </Flex>
 
         <Flex gap={{ base: 2, sm: 4 }} alignItems={"center"} justifyContent={{ base: "center", sm: "flex-start" }}>
-          <Box bg="white" p={2} border="2px solid" borderColor="retro.border" borderRadius="lg" boxShadow="4px 4px 0px 0px #2D3748">
-            <Text as="span" fontWeight={"bold"} mr={1}>{userProfile.posts.length}</Text>
+          <Box bg="white" p={2} border="3px solid black" borderRadius="0px" boxShadow="4px 4px 0px 0px #000">
+            <Text as="span" fontWeight={900} mr={1}>{userProfile.posts.length}</Text>
             Posts
           </Box>
-          <Box bg="white" p={2} border="2px solid" borderColor="retro.border" borderRadius="lg" boxShadow="4px 4px 0px 0px #2D3748">
-            <Text as="span" fontWeight={"bold"} mr={1}>{userProfile.followers.length}</Text>
+          <Box bg="white" p={2} border="3px solid black" borderRadius="0px" boxShadow="4px 4px 0px 0px #000">
+            <Text as="span" fontWeight={900} mr={1}>{userProfile.followers.length}</Text>
             Followers
           </Box>
-          <Box bg="white" p={2} border="2px solid" borderColor="retro.border" borderRadius="lg" boxShadow="4px 4px 0px 0px #2D3748">
-            <Text as="span" fontWeight={"bold"} mr={1}>{userProfile.following.length}</Text>
+          <Box bg="white" p={2} border="3px solid black" borderRadius="0px" boxShadow="4px 4px 0px 0px #000">
+            <Text as="span" fontWeight={900} mr={1}>{userProfile.following.length}</Text>
             Following
           </Box>
         </Flex>

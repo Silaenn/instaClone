@@ -38,9 +38,9 @@ const CommentsModal = ({ isOpen, onClose, post }) => {
   return (
     <Modal isOpen={isOpen} onClose={onClose} motionPreset="slideInLeft">
       <ModalOverlay />
-      <ModalContent bg={"black"} border={"1px solid gray"} maxW={"400px"}>
-        <ModalHeader>Comments</ModalHeader>
-        <ModalCloseButton />
+      <ModalContent bg={"retro.bg"} border={"4px solid black"} borderRadius={0} boxShadow="12px 12px 0px 0px #000">
+        <ModalHeader fontWeight={900} textTransform="uppercase">Comments</ModalHeader>
+        <ModalCloseButton bg="retro.pink" borderRadius={0} border="2px solid black" top="-10px" right="-10px" />
         <ModalBody pb={6}>
           <Flex
             mb={4}
@@ -49,13 +49,24 @@ const CommentsModal = ({ isOpen, onClose, post }) => {
             maxH={"250px"}
             overflowY={"auto"}
             ref={commentsContainerRef}
+            p={2}
+            border="2px solid black"
+            bg="white"
           >
             {post.comments.map((comment, idx) => (
               <Comment key={idx} comment={comment} />
             ))}
           </Flex>
           <form onSubmit={handleSubmitComment} style={{ marginTop: "2rem" }}>
-            <Input placeholder="Comment" size={"sm"} ref={commentRef} />
+            <Input
+              placeholder="Add a comment..."
+              size={"md"}
+              ref={commentRef}
+              bg="white"
+              border="2px solid black"
+              borderRadius={0}
+              _focus={{ boxShadow: "4px 4px 0px 0px #000" }}
+            />
             <Flex w={"full"} justifyContent={"flex-end"}>
               <Button
                 type="submit"
@@ -63,8 +74,15 @@ const CommentsModal = ({ isOpen, onClose, post }) => {
                 size={"sm"}
                 my={4}
                 isLoading={isCommenting}
+                bg="retro.main"
+                color="black"
+                border="3px solid black"
+                borderRadius={0}
+                fontWeight={900}
+                boxShadow="4px 4px 0px 0px #000"
+                _hover={{ transform: "translate(-2px, -2px)", boxShadow: "6px 6px 0px 0px #000" }}
               >
-                Post
+                POST
               </Button>
             </Flex>
           </form>

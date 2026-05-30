@@ -29,13 +29,14 @@ const PostHeader = ({ post, creatorProfile }) => {
               src={creatorProfile.profilePicURL}
               alt="user profile pic"
               size={"sm"}
+              border={"2px solid black"}
             />
           </Link>
         ) : (
           <SkeletonCircle size="10" />
         )}
 
-        <Flex fontSize={12} fontWeight={"bold"} gap={2}>
+        <Flex fontSize={14} fontWeight={"extrabold"} gap={2}>
           {creatorProfile ? (
             <Link to={`/${creatorProfile.username}`}>
               {creatorProfile.username}
@@ -43,23 +44,31 @@ const PostHeader = ({ post, creatorProfile }) => {
           ) : (
             <Skeleton w={"100px"} h={"10px"} />
           )}
-          <Box color={"gray.500"}>• {timeAgo(post.createdAt)}</Box>
+          <Box color={"black"} opacity={0.6} fontWeight={"medium"}>• {timeAgo(post.createdAt)}</Box>
         </Flex>
       </Flex>
 
       <Box cursor={"pointer"}>
         <Button
           size={"xs"}
-          bg={"transparent"}
+          bg={isFollowing ? "black" : "retro.main"}
+          color={isFollowing ? "white" : "black"}
           onClick={handleFollowUser}
           isLoading={isUpdating}
           fontSize={12}
-          color={"blue.500"}
-          fontWeight={"bold"}
+          fontWeight={"extrabold"}
+          borderRadius={0}
+          border={"2px solid black"}
+          boxShadow={"2px 2px 0px 0px #000"}
           _hover={{
-            color: "white",
+            transform: "translate(-1px, -1px)",
+            boxShadow: "3px 3px 0px 0px #000",
           }}
-          transition={"0.2s ease-in-out"}
+          _active={{
+            transform: "translate(1px, 1px)",
+            boxShadow: "none",
+          }}
+          transition={"0.1s"}
         >
           {isFollowing ? "Unfollow" : "Follow"}
         </Button>

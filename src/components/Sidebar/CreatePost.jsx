@@ -68,27 +68,39 @@ const CreatePost = () => {
         <Flex
           alignItems={"center"}
           gap={4}
-          _hover={{ bg: "whiteAlpha.400" }}
-          borderRadius={6}
+          borderRadius={0}
           p={2}
           w={{ base: 10, md: "full" }}
           justifyContent={{ base: "center", md: "flex-start" }}
+          border="2px solid transparent"
+          _hover={{
+            bg: "retro.main",
+            color: "black",
+            border: "2px solid black",
+            boxShadow: "4px 4px 0px 0px #000",
+            transform: "translate(-2px, -2px)",
+          }}
+          transition="0.1s"
           onClick={onOpen}
         >
           <CreatePostLogo />
-          <Box display={{ base: "none", md: "block" }}>Create</Box>
+          <Box display={{ base: "none", md: "block" }} fontWeight="800">Create</Box>
         </Flex>
       </Tooltip>
       <Modal isOpen={isOpen} onClose={onClose} size="xl">
         <ModalOverlay />
-        <ModalContent bg={"black"} border={"1px solid gray"}>
-          <ModalHeader>Create Post</ModalHeader>
-          <ModalCloseButton />{" "}
+        <ModalContent bg={"retro.bg"} border={"4px solid black"} borderRadius={0} boxShadow="12px 12px 0px 0px #000">
+          <ModalHeader fontWeight={900} textTransform="uppercase">Create Post</ModalHeader>
+          <ModalCloseButton bg="retro.pink" borderRadius={0} border="2px solid black" top="-10px" right="-10px" />
           <ModalBody pb={6}>
             <Textarea
               placeholder="Post caption..."
               value={caption}
               onChange={(e) => setCaption(e.target.value)}
+              bg="white"
+              border="2px solid black"
+              borderRadius={0}
+              _focus={{ boxShadow: "4px 4px 0px 0px #000" }}
             />
             <Input
               type="file"
@@ -96,27 +108,40 @@ const CreatePost = () => {
               ref={imageRef}
               onChange={handleImageChange}
             />
-            <BsFillImageFill
+            <Flex
               onClick={() => imageRef.current.click()}
-              style={{
-                marginTop: "15px",
-                marginLeft: "5px",
-                cursor: "pointer",
-              }}
-              size={16}
-            />
+              mt={4}
+              p={3}
+              bg="retro.cyan"
+              border="2px solid black"
+              cursor="pointer"
+              alignItems="center"
+              gap={2}
+              w="fit-content"
+              boxShadow="2px 2px 0px 0px #000"
+              _hover={{ transform: "translate(-1px, -1px)", boxShadow: "3px 3px 0px 0px #000" }}
+            >
+              <BsFillImageFill size={20} />
+              <Text fontWeight="800" fontSize="xs">SELECT IMAGE</Text>
+            </Flex>
             {selectedFile && (
               <Flex
                 mt={5}
                 w={"full"}
                 position={"relative"}
                 justifyContent={"center"}
+                border="3px solid black"
+                bg="black"
               >
                 <Image src={selectedFile} alt="Selected img" />
                 <CloseButton
                   position={"absolute"}
                   top={2}
                   right={2}
+                  bg="retro.pink"
+                  color="white"
+                  border="2px solid black"
+                  borderRadius={0}
                   onClick={() => {
                     setSelectedFile(null);
                   }}
@@ -125,8 +150,18 @@ const CreatePost = () => {
             )}
           </ModalBody>
           <ModalFooter>
-            <Button mr={3} onClick={handlePostCreation} isLoading={isLoading}>
-              Post
+            <Button
+              onClick={handlePostCreation}
+              isLoading={isLoading}
+              bg="retro.main"
+              color="black"
+              border="3px solid black"
+              borderRadius={0}
+              fontWeight={900}
+              boxShadow="4px 4px 0px 0px #000"
+              _hover={{ transform: "translate(-2px, -2px)", boxShadow: "6px 6px 0px 0px #000" }}
+            >
+              POST
             </Button>
           </ModalFooter>
         </ModalContent>
