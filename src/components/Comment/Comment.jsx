@@ -3,27 +3,26 @@ import useGetUserProfileById from "../../hooks/useGetUserProfileById";
 import { Link } from "react-router-dom";
 import { timeAgo } from "../../utils/timeAgo";
 import { homeSurfaceSoft } from "../../styles/homeStyles";
-
 const Comment = ({ comment }) => {
   const { userProfile, isLoading } = useGetUserProfileById(comment.createdBy);
-  console.log(userProfile);
   if (isLoading) return <CommentSkeleton />;
   return (
-    <Flex gap={4} alignItems={"flex-start"} {...homeSurfaceSoft} p={3}>
+    <Flex gap={4} alignItems={"flex-start"} {...homeSurfaceSoft} p={3} w="full" minW={0}>
       <Link to={`/${userProfile.username}`}>
         <Avatar src={userProfile.profilePicURL} name={"username"} size={"sm"} />
       </Link>
-      <Flex direction={"column"}>
-        <Flex gap={1} direction={"column"} justifyItems={"center"}>
+      <Flex direction={"column"} w="full" flex={1} minW={0}>
+        <Flex gap={1} direction={"column"} justifyItems={"center"} w="full" minW={0}>
           <Link to={`/${userProfile.username}`}>
-            <Text fontWeight={"bold"} fontSize={12}>
+            <Text fontWeight={"bold"} fontSize={12} w="full" noOfLines={1}>
               {userProfile.username}
             </Text>
           </Link>
-
-          <Text fontSize={14}>{comment.comment}</Text>
+          <Text fontSize={14} w="full">
+            {comment.comment}
+          </Text>
         </Flex>
-        <Text fontSize={12} color={"gray"} mt={1}>
+        <Text fontSize={12} color={"gray"} mt={1} w="full">
           {timeAgo(comment.createdAt)}
         </Text>
       </Flex>
