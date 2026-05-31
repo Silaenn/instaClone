@@ -11,9 +11,33 @@ import { timeAgo } from "../../utils/timeAgo";
 import { homeButton, homeSurfaceSoft } from "../../styles/homeStyles";
 
 const PostHeader = ({ post, creatorProfile }) => {
+  // guard missing creatorProfile to avoid runtime error when creating a new post
+  const safeCreator =
+    creatorProfile ||
+    (post && post.createBy
+      ? { uid: post.createBy, username: "", profilePicURL: "", followers: [] }
+      : null);
+
   const { handleFollowUser, isFollowing, isUpdating } = useFollowUser(
-    post.createBy
+    safeCreator ? safeCreator.uid || post.createBy : undefined
   );
+
+  if (!safeCreator) {
+    // minimal placeholder while data not available
+    return (
+      <Flex
+        justifyContent={"space-between"}
+        gap={4}
+        alignItems={"center"}
+        w={"full"}
+        p={3}
+        {...homeSurfaceSoft}
+      >
+        <Box>Loading...</Box>
+      </Flex>
+    );
+  }
+
   return (
     <Flex
       justifyContent={"space-between"}
@@ -24,9 +48,9 @@ const PostHeader = ({ post, creatorProfile }) => {
       {...homeSurfaceSoft}
     >
       <Flex alignItems={"center"} gap={3} minW={0}>
-        <Link to={`/${creatorProfile.username}`}>
+        <Link to={`/${safeCreator.username || "#"}`}>
           <Avatar
-            src={creatorProfile.profilePicURL}
+            src={safeCreator.profilePicURL}
             alt="user profile pic"
             size={"sm"}
             border={"2px solid black"}
@@ -34,8 +58,8 @@ const PostHeader = ({ post, creatorProfile }) => {
         </Link>
 
         <Flex fontSize={14} fontWeight={"extrabold"} gap={2} wrap="wrap">
-          <Link to={`/${creatorProfile.username}`}>
-            {creatorProfile.username}
+          <Link to={`/${safeCreator.username || "#"}`}>
+            {safeCreator.username || "Unknown"}
           </Link>
           <Box color={"black"} opacity={0.6} fontWeight={"medium"}>
             • {timeAgo(post.createdAt)}

@@ -203,7 +203,16 @@ function useCreatePost() {
       newPost.imageURL = uploadResult.url;
       newPost.imageDeleteToken = uploadResult.deleteToken;
 
-      createPost({ ...newPost, id: postDocRef.id });
+      const creatorProfileForPost = userProfile
+        ? userProfile
+        : {
+            uid: authUser.uid,
+            username: authUser.username || authUser.displayName || "",
+            profilePicURL: authUser.profilePicURL || "",
+            followers: authUser.followers || [],
+          };
+
+      createPost({ ...newPost, id: postDocRef.id, creatorProfile: creatorProfileForPost });
       if (pathname !== "/" && userProfile?.uid === authUser.uid) {
         addPost({ ...newPost, id: postDocRef.id });
       }
