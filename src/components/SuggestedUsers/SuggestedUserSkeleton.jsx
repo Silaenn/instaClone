@@ -10,14 +10,18 @@ const SuggestedUserSkeleton = () => {
       p={3}
       {...homeSurfaceSoft}
     >
-      <Flex alignItems={"center"} gap={2}>
-        <SkeletonCircle size="10" />
-        <VStack spacing={1} alignItems={"flex-start"}>
-          <Skeleton height="10px" w="80px" />
-          <Skeleton height="8px" w="50px" />
+      <Flex alignItems={"center"} gap={2} minW={0}>
+        <Box border="2px solid black" borderRadius={0} p="2px">
+          <SkeletonCircle size="10" />
+        </Box>
+        <VStack spacing={1} alignItems={"flex-start"} ml={2} minW={0}>
+          <Skeleton height="12px" w="100px" borderRadius={0} />
+          <Skeleton height="10px" w="80px" borderRadius={0} />
         </VStack>
       </Flex>
-      <Skeleton height="30px" w="80px" />
+      <Box>
+        <Skeleton height="30px" w="80px" borderRadius={0} />
+      </Box>
     </Flex>
   );
 };

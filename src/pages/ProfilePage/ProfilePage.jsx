@@ -6,6 +6,7 @@ import {
   SkeletonCircle,
   Text,
   VStack,
+  Box
 } from "@chakra-ui/react";
 import ProfileHeader from "../../components/Profile/ProfileHeader";
 import ProfileTabs from "../../components/Profile/ProfileTabs";
@@ -59,7 +60,9 @@ const ProfileHeaderSkelaton = () => {
       justifyContent={"center"}
       alignItems={"center"}
     >
-      <SkeletonCircle size="24" />
+      <Box border="4px solid black" p="4px" borderRadius={0} bg="retro.main">
+        <SkeletonCircle size="24" />
+      </Box>
 
       <VStack
         alignItems={{ base: "center", sm: "flex-start" }}
@@ -67,8 +70,12 @@ const ProfileHeaderSkelaton = () => {
         mx={"auto"}
         flex={1}
       >
-        <Skeleton height="12px" width="150px" />
-        <Skeleton height="12px" width="100px" />
+        <Skeleton height="20px" width="200px" borderRadius={0} />
+        <Flex gap={3}>
+          <Skeleton height="20px" width="120px" borderRadius={0} />
+          <Skeleton height="20px" width="120px" borderRadius={0} />
+          <Skeleton height="20px" width="120px" borderRadius={0} />
+        </Flex>
       </VStack>
     </Flex>
   );

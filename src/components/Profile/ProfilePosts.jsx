@@ -18,9 +18,9 @@ const ProfilePosts = () => {
       {isLoading &&
         [0, 1, 2, 3, 4, 5].map((_, idx) => (
           <VStack key={idx} alignItems={"flex-start"} gap={4}>
-            <Skeleton w={"full"}>
-              <Box h="300px">contents wrapped</Box>
-            </Skeleton>
+            <Box border="3px solid black" borderRadius={0} boxShadow="4px 4px 0px 0px #000" w="full" overflow="hidden" aspectRatio={1}>
+              <Skeleton w="full" h="full" startColor="gray.800" endColor="gray.600" />
+            </Box>
           </VStack>
         ))}
 

@@ -1,4 +1,4 @@
-import { Avatar, Flex, Skeleton, SkeletonCircle, Text } from "@chakra-ui/react";
+import {Box, Avatar, Flex, Skeleton, SkeletonCircle, Text } from "@chakra-ui/react";
 import useGetUserProfileById from "../../hooks/useGetUserProfileById";
 import { Link } from "react-router-dom";
 import { timeAgo } from "../../utils/timeAgo";
@@ -34,11 +34,13 @@ export default Comment;
 
 const CommentSkeleton = () => {
   return (
-    <Flex gap={4} w={"full"} alignItems={"center"}>
-      <SkeletonCircle h={10} w={10} />
-      <Flex gap={1} flexDir={"column"}>
-        <Skeleton height={2} width={100} />
-        <Skeleton height={2} width={50} />
+    <Flex gap={4} w={"full"} alignItems={"center"} {...homeSurfaceSoft} p={3} minW={0}>
+      <Box border="2px solid black" p="2px" borderRadius={0}>
+        <SkeletonCircle h={10} w={10} />
+      </Box>
+      <Flex gap={1} flexDir={"column"} flex={1} minW={0}>
+        <Skeleton height={12} width={120} borderRadius={0} />
+        <Skeleton height={10} width={200} borderRadius={0} />
       </Flex>
     </Flex>
   );
