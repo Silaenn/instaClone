@@ -41,6 +41,7 @@ const Login = () => {
         fontSize={14}
         onClick={() => login(inputs)}
         isLoading={loading}
+        isDisabled={loading}
       >
         Log in
       </Button>

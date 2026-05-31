@@ -1,19 +1,30 @@
+import { useState, useEffect } from "react";
 import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
-import useShowToast from "./useShowToast";
 import { auth, firestore } from "../firebase/firebase";
 import { doc, getDoc } from "firebase/firestore";
 import useAuthStore from "../store/authStore";
 
 const useLogin = () => {
-  const showToast = useShowToast();
-  const [signInWithEmailAndPassword, user, loading, error] =
+  const [signInWithEmailAndPassword, user, loading, firebaseError] =
     useSignInWithEmailAndPassword(auth);
 
+  const [errorMessage, setErrorMessage] = useState(null);
   const lognUser = useAuthStore((state) => state.login);
 
+  // map firebase hook error to friendly UI message as soon as it appears
+  useEffect(() => {
+    if (firebaseError) {
+      const msg = "Invalid email or password";
+      setErrorMessage(msg);
+    }
+  }, [firebaseError]);
+
   const login = async (inputs) => {
+    setErrorMessage(null);
     if (!inputs.email || !inputs.password) {
-      return showToast("Erorr", "Please fill all the fields", "error");
+      const msg = "Please fill all the fields";
+      setErrorMessage(msg);
+      return;
     }
     try {
       const userCred = await signInWithEmailAndPassword(
@@ -26,13 +37,16 @@ const useLogin = () => {
         const docSnap = await getDoc(docRef);
         localStorage.setItem("user-info", JSON.stringify(docSnap.data()));
         lognUser(docSnap.data());
+        setErrorMessage(null);
       }
-    } catch (error) {
-      showToast("Erorr", error.message, "erorr");
+    } catch (err) {
+      const msg = "Unable to login. Please try again.";
+      setErrorMessage(msg);
+      console.error(err);
     }
   };
 
-  return { loading, error, login };
+  return { loading, error: errorMessage ? { message: errorMessage } : null, login };
 };
 
 export default useLogin;

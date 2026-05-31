@@ -79,6 +79,7 @@ const Signup = () => {
         size={"sm"}
         fontSize={14}
         isLoading={loading}
+        isDisabled={loading}
         onClick={() => signup(inputs)}
       >
         Sign Up
