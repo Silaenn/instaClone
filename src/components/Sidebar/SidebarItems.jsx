@@ -1,4 +1,3 @@
-import Notifications from "./Notifications";
 import ProfileLink from "./ProfileLink";
 import CreatePost from "./CreatePost";
 import Search from "./Search";
@@ -9,7 +8,6 @@ const SidebarItems = () => {
     <>
       <Home />
       <Search />
-      <Notifications />
       <CreatePost />
 
       <ProfileLink />
