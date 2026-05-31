@@ -17,49 +17,53 @@ const SuggestedUsers = () => {
     <VStack alignItems="stretch" gap={4}>
       <SuggestedHeader />
 
-      <Flex
-         alignItems={"center"}
-         justifyContent={"space-between"}
-         w={"full"}
-      >
-         <Text {...homeSectionTitle}>Suggested for you</Text>
-         {!isLoading && (
-           <Text
-             fontSize={12}
-             fontWeight={900}
-             _hover={{ color: "retro.pink", transform: "scale(1.05)" }}
-             transition="0.2s"
-             cursor={"pointer"}
-             textDecoration="underline"
-           >
-             SEE ALL
-           </Text>
-         )}
-      </Flex>
+      {(isLoading || suggestedUsers.length > 0) && (
+        <>
+          <Flex
+            alignItems={"center"}
+            justifyContent={"space-between"}
+            w={"full"}
+          >
+            <Text {...homeSectionTitle}>Suggested for you</Text>
+            {!isLoading && (
+              <Text
+                fontSize={12}
+                fontWeight={900}
+                _hover={{ color: "retro.pink", transform: "scale(1.05)" }}
+                transition="0.2s"
+                cursor={"pointer"}
+                textDecoration="underline"
+              >
+                SEE ALL
+              </Text>
+            )}
+          </Flex>
 
-      {isLoading && (
-        <VStack gap={3}>
-          {[0, 1, 2].map((_, idx) => (
-            <SuggestedUserSkeleton key={idx} />
-          ))}
-        </VStack>
-      )}
+          {isLoading && (
+            <VStack gap={3}>
+              {[0, 1, 2].map((_, idx) => (
+                <SuggestedUserSkeleton key={idx} />
+              ))}
+            </VStack>
+          )}
 
-      {!isLoading && (
-        <VStack
-          as={motion.div}
-          variants={containerVariant}
-          initial="hidden"
-          animate="visible"
-          gap={3}
-          alignItems="stretch"
-        >
-          {suggestedUsers.map((user) => (
-            <motion.div key={user.id} variants={childVariant}>
-              <SuggestedUser user={user} />
-            </motion.div>
-          ))}
-        </VStack>
+          {!isLoading && (
+            <VStack
+              as={motion.div}
+              variants={containerVariant}
+              initial="hidden"
+              animate="visible"
+              gap={3}
+              alignItems="stretch"
+            >
+              {suggestedUsers.map((user) => (
+                <motion.div key={user.id} variants={childVariant}>
+                  <SuggestedUser user={user} />
+                </motion.div>
+              ))}
+            </VStack>
+          )}
+        </>
       )}
 
       <MotionBox
