@@ -15,7 +15,7 @@ const Sidebar = () => {
     <Box
       height={"100vh"}
       borderRight={"none"}
-      py={8}
+      py={{ base: 4, md: 6, lg: 8 }}
       position={"sticky"}
       top={0}
       left={0}
@@ -30,16 +30,17 @@ const Sidebar = () => {
         gap={8}
         w="full"
         height={"full"}
-        p={{ base: 4, md: 2, lg: 4 }}
+        pt={{ base: 0, lg: 4 }}
+        pb={{ base: 4, md: 2, lg: 4 }}
+        px={{ base: 4, md: 2, lg: 4 }}
         alignItems={{ base: "center", lg: "stretch" }}
         {...homeSurface}
       >
-        <Box w="full">
+        <Box w="full" display={{ base: "none", lg: "block" }}>
           <Link
             to={"/"}
             as={RouterLink}
             pl={2}
-            display={{ base: "none", lg: "block" }}
             cursor={"pointer"}
             fontSize="2xl"
             fontWeight={900}
@@ -69,6 +70,7 @@ const Sidebar = () => {
           }}
           w={10}
           h={10}
+          mt={2}
           alignItems="center"
           justifyContent="center"
           fontSize="lg"
