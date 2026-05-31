@@ -18,6 +18,7 @@ import { SearchLogo } from "../../assets/contants";
 import useSearchUser from "../../hooks/useSearchUser";
 import { useRef } from "react";
 import SuggestedUser from "../SuggestedUsers/SuggestedUser";
+import { homeButton, homeInput, homeModal, sidebarItem } from "../../styles/homeStyles";
 
 const Search = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -28,7 +29,6 @@ const Search = () => {
     getUserProfile(searchRef.current.value);
   };
 
-  console.log(user);
   return (
     <>
       <Tooltip
@@ -44,17 +44,9 @@ const Search = () => {
           gap={4}
           borderRadius={0}
           p={2}
-          w={{ base: 10, md: "full" }}
+          w={{ base: 12, md: "full" }}
           justifyContent={{ base: "center", md: "flex-start" }}
-          border="2px solid transparent"
-          _hover={{
-            bg: "retro.main",
-            color: "black",
-            border: "2px solid black",
-            boxShadow: "4px 4px 0px 0px #000",
-            transform: "translate(-2px, -2px)",
-          }}
-          transition="0.1s"
+          {...sidebarItem}
           onClick={onOpen}
           cursor="pointer"
         >
@@ -65,7 +57,7 @@ const Search = () => {
 
       <Modal isOpen={isOpen} onClose={onClose} motionPreset="slideInLeft">
         <ModalOverlay />
-        <ModalContent bg={"retro.bg"} border={"4px solid black"} borderRadius={0} boxShadow="12px 12px 0px 0px #000">
+        <ModalContent {...homeModal}>
           <ModalHeader fontWeight={900} textTransform="uppercase">Search user</ModalHeader>
           <ModalCloseButton bg="retro.pink" borderRadius={0} border="2px solid black" top="-10px" right="-10px" />
 
@@ -76,10 +68,7 @@ const Search = () => {
                 <Input
                   placeholder="asaprogrammer"
                   ref={searchRef}
-                  bg="white"
-                  border="2px solid black"
-                  borderRadius={0}
-                  _focus={{ boxShadow: "4px 4px 0px 0px #000" }}
+                  {...homeInput}
                 />
               </FormControl>
 
@@ -95,8 +84,7 @@ const Search = () => {
                   border="3px solid black"
                   borderRadius={0}
                   fontWeight={900}
-                  boxShadow="4px 4px 0px 0px #000"
-                  _hover={{ transform: "translate(-2px, -2px)", boxShadow: "6px 6px 0px 0px #000" }}
+                  {...homeButton}
                 >
                   SEARCH
                 </Button>
@@ -105,6 +93,11 @@ const Search = () => {
             {user && (
               <Box mt={4} p={4} border="2px solid black" bg="white" boxShadow="4px 4px 0px 0px #000">
                 <SuggestedUser user={user} setUser={setUser} />
+              </Box>
+            )}
+            {!user && !isLoading && (
+              <Box mt={4} p={4} border="2px dashed black" bg="white">
+                Search a username to preview the profile.
               </Box>
             )}
           </ModalBody>

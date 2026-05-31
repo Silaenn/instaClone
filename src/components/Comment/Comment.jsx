@@ -2,13 +2,14 @@ import { Avatar, Flex, Skeleton, SkeletonCircle, Text } from "@chakra-ui/react";
 import useGetUserProfileById from "../../hooks/useGetUserProfileById";
 import { Link } from "react-router-dom";
 import { timeAgo } from "../../utils/timeAgo";
+import { homeSurfaceSoft } from "../../styles/homeStyles";
 
 const Comment = ({ comment }) => {
   const { userProfile, isLoading } = useGetUserProfileById(comment.createdBy);
   console.log(userProfile);
   if (isLoading) return <CommentSkeleton />;
   return (
-    <Flex gap={4} alignItems={"center"}>
+    <Flex gap={4} alignItems={"flex-start"} {...homeSurfaceSoft} p={3}>
       <Link to={`/${userProfile.username}`}>
         <Avatar src={userProfile.profilePicURL} name={"username"} size={"sm"} />
       </Link>
@@ -22,7 +23,7 @@ const Comment = ({ comment }) => {
 
           <Text fontSize={14}>{comment.comment}</Text>
         </Flex>
-        <Text fontSize={12} color={"gray"}>
+        <Text fontSize={12} color={"gray"} mt={1}>
           {timeAgo(comment.createdAt)}
         </Text>
       </Flex>

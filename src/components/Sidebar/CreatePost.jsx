@@ -14,6 +14,7 @@ import {
   ModalHeader,
   ModalOverlay,
   Textarea,
+  Text,
   Tooltip,
   useDisclosure,
 } from "@chakra-ui/react";
@@ -35,6 +36,7 @@ import {
 } from "firebase/firestore";
 import { firestore } from "../../firebase/firebase";
 import { uploadImageToCloudinary } from "../../utils/cloudinary";
+import { homeButton, homeInput, homeModal, sidebarItem } from "../../styles/homeStyles";
 const CreatePost = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [caption, setCaption] = useState("");
@@ -70,17 +72,9 @@ const CreatePost = () => {
           gap={4}
           borderRadius={0}
           p={2}
-          w={{ base: 10, md: "full" }}
+          w={{ base: 12, md: "full" }}
           justifyContent={{ base: "center", md: "flex-start" }}
-          border="2px solid transparent"
-          _hover={{
-            bg: "retro.main",
-            color: "black",
-            border: "2px solid black",
-            boxShadow: "4px 4px 0px 0px #000",
-            transform: "translate(-2px, -2px)",
-          }}
-          transition="0.1s"
+          {...sidebarItem}
           onClick={onOpen}
         >
           <CreatePostLogo />
@@ -89,18 +83,19 @@ const CreatePost = () => {
       </Tooltip>
       <Modal isOpen={isOpen} onClose={onClose} size="xl">
         <ModalOverlay />
-        <ModalContent bg={"retro.bg"} border={"4px solid black"} borderRadius={0} boxShadow="12px 12px 0px 0px #000">
+        <ModalContent {...homeModal}>
           <ModalHeader fontWeight={900} textTransform="uppercase">Create Post</ModalHeader>
           <ModalCloseButton bg="retro.pink" borderRadius={0} border="2px solid black" top="-10px" right="-10px" />
           <ModalBody pb={6}>
+            <Box mb={4} fontWeight={700}>
+              Share a polished post with caption, image, and preview before publishing.
+            </Box>
             <Textarea
               placeholder="Post caption..."
               value={caption}
               onChange={(e) => setCaption(e.target.value)}
-              bg="white"
-              border="2px solid black"
-              borderRadius={0}
-              _focus={{ boxShadow: "4px 4px 0px 0px #000" }}
+              minH="120px"
+              {...homeInput}
             />
             <Input
               type="file"
@@ -132,6 +127,7 @@ const CreatePost = () => {
                 justifyContent={"center"}
                 border="3px solid black"
                 bg="black"
+                boxShadow="6px 6px 0px 0px #000"
               >
                 <Image src={selectedFile} alt="Selected img" />
                 <CloseButton
@@ -155,11 +151,9 @@ const CreatePost = () => {
               isLoading={isLoading}
               bg="retro.main"
               color="black"
-              border="3px solid black"
-              borderRadius={0}
               fontWeight={900}
-              boxShadow="4px 4px 0px 0px #000"
-              _hover={{ transform: "translate(-2px, -2px)", boxShadow: "6px 6px 0px 0px #000" }}
+              px={6}
+              {...homeButton}
             >
               POST
             </Button>
@@ -179,7 +173,7 @@ function useCreatePost() {
   const createPost = usePostStore((state) => state.createPost);
   const addPost = useUserProfileStore((state) => state.addPost);
   const userProfile = useUserProfileStore((state) => state.userProfile);
-  const { pathname } = useLocation;
+  const { pathname } = useLocation();
 
   const handleCreatePost = async (selectedFile, caption) => {
     if (!selectedFile) throw new Error("Please select an image");
@@ -209,10 +203,10 @@ function useCreatePost() {
       newPost.imageURL = uploadResult.url;
       newPost.imageDeleteToken = uploadResult.deleteToken;
 
-      if (userProfile.uid === authUser.uid)
-        createPost({ ...newPost, id: postDocRef.id });
-      if (pathname !== "/" && userProfile.uid === authUser.uid)
+      createPost({ ...newPost, id: postDocRef.id });
+      if (pathname !== "/" && userProfile?.uid === authUser.uid) {
         addPost({ ...newPost, id: postDocRef.id });
+      }
 
       showToast("Success", "Post created successfully", "success");
     } catch (error) {

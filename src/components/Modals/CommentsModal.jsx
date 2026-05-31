@@ -12,6 +12,7 @@ import {
 import Comment from "../Comment/Comment";
 import usePostComment from "../../hooks/usePostComment";
 import { useEffect, useRef } from "react";
+import { homeButton, homeInput, homeModal } from "../../styles/homeStyles";
 
 const CommentsModal = ({ isOpen, onClose, post }) => {
   const { handlePostComment, isCommenting } = usePostComment();
@@ -38,15 +39,18 @@ const CommentsModal = ({ isOpen, onClose, post }) => {
   return (
     <Modal isOpen={isOpen} onClose={onClose} motionPreset="slideInLeft">
       <ModalOverlay />
-      <ModalContent bg={"retro.bg"} border={"4px solid black"} borderRadius={0} boxShadow="12px 12px 0px 0px #000">
+      <ModalContent {...homeModal}>
         <ModalHeader fontWeight={900} textTransform="uppercase">Comments</ModalHeader>
         <ModalCloseButton bg="retro.pink" borderRadius={0} border="2px solid black" top="-10px" right="-10px" />
         <ModalBody pb={6}>
+          <Flex mb={3} fontWeight={700}>
+            Thread view for this post.
+          </Flex>
           <Flex
             mb={4}
             gap={4}
             flexDir={"column"}
-            maxH={"250px"}
+            maxH={{ base: "45vh", md: "55vh" }}
             overflowY={"auto"}
             ref={commentsContainerRef}
             p={2}
@@ -62,10 +66,7 @@ const CommentsModal = ({ isOpen, onClose, post }) => {
               placeholder="Add a comment..."
               size={"md"}
               ref={commentRef}
-              bg="white"
-              border="2px solid black"
-              borderRadius={0}
-              _focus={{ boxShadow: "4px 4px 0px 0px #000" }}
+              {...homeInput}
             />
             <Flex w={"full"} justifyContent={"flex-end"}>
               <Button
@@ -79,8 +80,7 @@ const CommentsModal = ({ isOpen, onClose, post }) => {
                 border="3px solid black"
                 borderRadius={0}
                 fontWeight={900}
-                boxShadow="4px 4px 0px 0px #000"
-                _hover={{ transform: "translate(-2px, -2px)", boxShadow: "6px 6px 0px 0px #000" }}
+                {...homeButton}
               >
                 POST
               </Button>

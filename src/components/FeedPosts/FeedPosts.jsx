@@ -1,34 +1,28 @@
-import {
-  Box,
-  Container,
-  Flex,
-  Skeleton,
-  SkeletonCircle,
-  Text,
-  VStack,
-} from "@chakra-ui/react";
+import { Box, Flex, Skeleton, SkeletonCircle, Text, VStack } from "@chakra-ui/react";
 import FeedPost from "./FeedPost";
 import useGetFeedPosts from "../../hooks/useGetFeedPosts";
+import { homeSurfaceSoft, homeSectionTitle } from "../../styles/homeStyles";
 
 const FeedPosts = () => {
   const { isLoading, posts } = useGetFeedPosts();
-  console.log(useGetFeedPosts());
 
   return (
-    <Container maxW={"container.sm"} py={10} px={2}>
+    <VStack alignItems="stretch" spacing={6}>
       {isLoading &&
         [0, 1, 2, 3].map((_, idx) => (
-          <VStack key={idx} gap={4} alignItems={"flex-start"} mb={10}>
-            <Flex gap="2">
+          <VStack key={idx} gap={4} alignItems={"stretch"}>
+            <Flex gap="3" alignItems="center" {...homeSurfaceSoft} p={4}>
               <SkeletonCircle size="10" />
-              <VStack gap={2} alignItems={"flex-start"}>
-                <Skeleton height="10px" w={"200px"} />
-                <Skeleton height="10px" w={"200px"} />
+              <VStack gap={2} alignItems={"flex-start"} flex={1}>
+                <Skeleton height="10px" w={"160px"} />
+                <Skeleton height="10px" w={"120px"} />
               </VStack>
             </Flex>
 
-            <Skeleton w={"full"}>
-              <Box h={"400px"}>contents wrapped</Box>
+            <Skeleton w={"full"} borderRadius={0}>
+              <Box h={"420px"} {...homeSurfaceSoft}>
+                contents wrapped
+              </Box>
             </Skeleton>
           </VStack>
         ))}
@@ -37,12 +31,17 @@ const FeedPosts = () => {
         posts.length > 0 &&
         posts.map((post) => <FeedPost key={post.id} post={post} />)}
       {!isLoading && posts.length === 0 && (
-        <>
-          <Text>Dayuum. LOoks like you don&apos;t have any friends.</Text>
-          <Text color={"red.400"}>Stop coding and go make some!!</Text>
-        </>
+        <Box {...homeSurfaceSoft} p={6}>
+          <Text {...homeSectionTitle}>Empty feed</Text>
+          <Text fontSize={{ base: "2xl", md: "3xl" }} fontWeight={900} textTransform="uppercase" mt={2}>
+            Your feed is quiet.
+          </Text>
+          <Text mt={2} fontWeight={700} opacity={0.75}>
+            Follow more people or start posting to fill this space with something worth scrolling.
+          </Text>
+        </Box>
       )}
-    </Container>
+    </VStack>
   );
 };
 

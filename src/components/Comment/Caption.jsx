@@ -3,11 +3,12 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { timeAgo } from "../../utils/timeAgo";
 import useUserProfileStore from "../../store/userProfileStore";
+import { homeSurfaceSoft } from "../../styles/homeStyles";
 
 const Caption = ({ post }) => {
   const userProfile = useUserProfileStore((state) => state.userProfile);
   return (
-    <Flex gap={4} alignItems={"center"}>
+    <Flex gap={4} alignItems={"flex-start"} {...homeSurfaceSoft} p={3}>
       <Link to={`/${userProfile.username}`}>
         <Avatar src={userProfile.profilePicURL} name={"username"} size={"sm"} />
       </Link>
@@ -21,7 +22,7 @@ const Caption = ({ post }) => {
 
           <Text fontSize={14}>{post.caption}</Text>
         </Flex>
-        <Text fontSize={12} color={"gray"}>
+        <Text fontSize={12} color={"gray"} mt={1}>
           {timeAgo(post.createdAt)}
         </Text>
       </Flex>

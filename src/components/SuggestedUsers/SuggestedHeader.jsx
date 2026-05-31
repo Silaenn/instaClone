@@ -1,20 +1,21 @@
-import { Avatar, Box, Button, Flex, Text } from "@chakra-ui/react";
+import { Avatar, Button, Flex, Text } from "@chakra-ui/react";
 import useLogout from "../../hooks/useLogout";
 import useAuthStore from "../../store/authStore";
 import { Link } from "react-router-dom";
+import { homeButton, homeSurface } from "../../styles/homeStyles";
 const SuggestedHeader = () => {
   const { handleLogout, isLoggingOut } = useLogout();
   const authUser = useAuthStore((state) => state.user);
 
   if (!authUser) return null;
   return (
-    <Flex justifyContent={"space-between"} alignItems={"center"} w={"full"} p={3} border="3px solid black" bg="white" boxShadow="6px 6px 0px 0px #000">
+    <Flex justifyContent={"space-between"} alignItems={"center"} w={"full"} p={4} {...homeSurface}>
       <Flex alignItems={"center"} gap={3}>
-        <Link to={`${authUser.username}`}>
-          <Avatar size={"lg"} src={authUser.profilePicURL} border="3px solid black" borderRadius={0} />
+        <Link to={`/${authUser.username}`}>
+          <Avatar size={"md"} src={authUser.profilePicURL} border="3px solid black" borderRadius={0} />
         </Link>
-        <Link to={`${authUser.username}`}>
-          <Text fontSize={16} fontWeight={900} textTransform="uppercase">
+        <Link to={`/${authUser.username}`}>
+          <Text fontSize={16} fontWeight={900} textTransform="uppercase" lineHeight={1}>
             {authUser.username}
           </Text>
         </Link>
@@ -32,6 +33,7 @@ const SuggestedHeader = () => {
         boxShadow="3px 3px 0px 0px #000"
         onClick={handleLogout}
         isLoading={isLoggingOut}
+        {...homeButton}
       >
         LOG OUT
       </Button>

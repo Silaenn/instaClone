@@ -5,6 +5,7 @@ import { InstagramLogo, InstagramMobileLogo } from "../../assets/contants";
 import { BiLogOut } from "react-icons/bi";
 import useLogout from "../../hooks/useLogout";
 import SidebarItems from "./SidebarItems";
+import { homeSurface } from "../../styles/homeStyles";
 
 const Sidebar = () => {
   const { handleLogout, isLoggingOut } = useLogout();
@@ -20,14 +21,11 @@ const Sidebar = () => {
     >
       <Flex
         direction={"column"}
-        gap={10}
+        gap={8}
         w="full"
         height={"full"}
-        bg="white"
-        border="3px solid black"
-        borderRadius="0px"
         p={4}
-        boxShadow="8px 8px 0px 0px #000"
+        {...homeSurface}
       >
         <Link
           to={"/"}
@@ -60,6 +58,19 @@ const Sidebar = () => {
           <SidebarItems />
         </Flex>
 
+        <Box
+          mt="auto"
+          p={3}
+          border="2px solid black"
+          bg="retro.bg"
+          boxShadow="4px 4px 0px 0px #000"
+          fontSize={12}
+          fontWeight={700}
+          lineHeight={1.5}
+        >
+          Home feels better when the surface is calm and the accents do the work.
+        </Box>
+
         {/* LOGOUT    */}
         <Tooltip
           hasArrow
@@ -80,7 +91,7 @@ const Sidebar = () => {
             boxShadow={"4px 4px 0px 0px #000"}
             borderRadius={0}
             p={2}
-            w={{ base: 10, md: "full" }}
+            w={{ base: 12, md: "full" }}
             mt={"auto"}
             justifyContent={{ base: "center", md: "flex-start" }}
             transition={"0.1s"}

@@ -10,6 +10,7 @@ import {
 import { Link } from "react-router-dom";
 import useFollowUser from "../../hooks/useFollowUser";
 import { timeAgo } from "../../utils/timeAgo";
+import { homeButton, homeSurfaceSoft } from "../../styles/homeStyles";
 
 const PostHeader = ({ post, creatorProfile }) => {
   const { handleFollowUser, isFollowing, isUpdating } = useFollowUser(
@@ -18,11 +19,13 @@ const PostHeader = ({ post, creatorProfile }) => {
   return (
     <Flex
       justifyContent={"space-between"}
-      my={2}
+      gap={4}
       alignItems={"center"}
       w={"full"}
+      p={3}
+      {...homeSurfaceSoft}
     >
-      <Flex alignItems={"center"} gap={2}>
+      <Flex alignItems={"center"} gap={3} minW={0}>
         {creatorProfile ? (
           <Link to={`/${creatorProfile.username}`}>
             <Avatar
@@ -36,41 +39,33 @@ const PostHeader = ({ post, creatorProfile }) => {
           <SkeletonCircle size="10" />
         )}
 
-        <Flex fontSize={14} fontWeight={"extrabold"} gap={2}>
-          {creatorProfile ? (
-            <Link to={`/${creatorProfile.username}`}>
-              {creatorProfile.username}
-            </Link>
-          ) : (
-            <Skeleton w={"100px"} h={"10px"} />
-          )}
-          <Box color={"black"} opacity={0.6} fontWeight={"medium"}>• {timeAgo(post.createdAt)}</Box>
+        <Flex fontSize={14} fontWeight={"extrabold"} gap={2} wrap="wrap">
+        {creatorProfile ? (
+          <Link to={`/${creatorProfile.username}`}>
+            {creatorProfile.username}
+          </Link>
+        ) : (
+          <Skeleton w={"100px"} h={"10px"} />
+        )}
+        <Box color={"black"} opacity={0.6} fontWeight={"medium"}>
+          • {timeAgo(post.createdAt)}
+        </Box>
         </Flex>
       </Flex>
 
-      <Box cursor={"pointer"}>
+      <Box cursor={"pointer"} flexShrink={0}>
         <Button
-          size={"xs"}
-          bg={isFollowing ? "black" : "retro.main"}
-          color={isFollowing ? "white" : "black"}
-          onClick={handleFollowUser}
-          isLoading={isUpdating}
-          fontSize={12}
-          fontWeight={"extrabold"}
-          borderRadius={0}
-          border={"2px solid black"}
-          boxShadow={"2px 2px 0px 0px #000"}
-          _hover={{
-            transform: "translate(-1px, -1px)",
-            boxShadow: "3px 3px 0px 0px #000",
-          }}
-          _active={{
-            transform: "translate(1px, 1px)",
-            boxShadow: "none",
-          }}
-          transition={"0.1s"}
+        size={"xs"}
+        bg={isFollowing ? "black" : "retro.main"}
+        color={isFollowing ? "white" : "black"}
+        onClick={handleFollowUser}
+        isLoading={isUpdating}
+        fontSize={12}
+        fontWeight={"extrabold"}
+        px={4}
+        {...homeButton}
         >
-          {isFollowing ? "Unfollow" : "Follow"}
+        {isFollowing ? "Unfollow" : "Follow"}
         </Button>
       </Box>
     </Flex>

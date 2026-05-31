@@ -19,6 +19,7 @@ import useAuthStore from "../../store/authStore";
 import useLikePost from "../../hooks/useLikePost";
 import { timeAgo } from "../../utils/timeAgo";
 import CommentsModal from "../Modals/CommentsModal";
+import { homeButton, homeInput, homeSurfaceSoft } from "../../styles/homeStyles";
 
 const PostFooter = ({ post, isProfilePage, creatorProfile }) => {
   const { isCommenting, handlePostComment } = usePostComment();
@@ -34,8 +35,15 @@ const PostFooter = ({ post, isProfilePage, creatorProfile }) => {
   };
 
   return (
-    <Box mb={0} mt={"auto"}>
-      <Flex alignItems={"center"} gap={4} w={"full"} pt={0} mb={2} mt={4}>
+    <Box mb={0} mt={"auto"} pt={4}>
+      <Flex
+        alignItems={"center"}
+        gap={4}
+        w={"full"}
+        pt={4}
+        mb={3}
+        borderTop="2px solid black"
+      >
         <Box onClick={handleLikePost} cursor={"pointer"} fontSize={18}>
           {!isLiked ? <NotificationsLogo /> : <UnlikeLogo />}
         </Box>
@@ -49,7 +57,7 @@ const PostFooter = ({ post, isProfilePage, creatorProfile }) => {
         </Box>
       </Flex>
 
-      <Text fontWeight={800} fontSize={"sm"} color="black">
+      <Text fontWeight={800} fontSize={"sm"} color="black" textTransform="uppercase">
         {likes} likes
       </Text>
 
@@ -61,12 +69,14 @@ const PostFooter = ({ post, isProfilePage, creatorProfile }) => {
 
       {!isProfilePage && (
         <>
-          <Text fontSize="sm" fontWeight={800}>
-            {creatorProfile?.username}{" "}
-            <Text as="span" fontWeight={500}>
-              {post.caption}
+          <Box {...homeSurfaceSoft} p={3} mt={3}>
+            <Text fontSize="sm" fontWeight={800}>
+              {creatorProfile?.username}{" "}
+              <Text as="span" fontWeight={500}>
+                {post.caption}
+              </Text>
             </Text>
-          </Text>
+          </Box>
 
           {post.comments.length > 0 && (
             <Text
@@ -89,7 +99,7 @@ const PostFooter = ({ post, isProfilePage, creatorProfile }) => {
       )}
 
       {authUser && (
-        <Flex alignItems={"center"} gap={2} justifyContent={"space-between"} mt={4}>
+        <Flex alignItems={"center"} gap={2} justifyContent={"space-between"} mt={4} {...homeSurfaceSoft} p={2}>
           <InputGroup>
             <Input
               variant={"outline"}
@@ -98,9 +108,7 @@ const PostFooter = ({ post, isProfilePage, creatorProfile }) => {
               onChange={(e) => setComment(e.target.value)}
               value={comment}
               ref={commentREf}
-              bg="white"
-              borderWidth="2px"
-              borderRadius={0}
+              {...homeInput}
             />
             <InputRightElement width="4.5rem">
               <Button
@@ -115,6 +123,7 @@ const PostFooter = ({ post, isProfilePage, creatorProfile }) => {
                 isLoading={isCommenting}
                 h="full"
                 w="full"
+                {...homeButton}
               >
                 POST
               </Button>
