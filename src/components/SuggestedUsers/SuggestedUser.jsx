@@ -29,7 +29,6 @@ const SuggestedUser = ({ user, setUser }) => {
       p={3}
       {...homeSurfaceSoft}
       transition="0.1s"
-      _hover={{ transform: "translate(-2px, -2px)", boxShadow: "6px 6px 0px 0px #000" }}
     >
       <Flex alignItems={"center"} gap={2}>
         <Link to={`/${user.username}`}>
@@ -57,6 +56,7 @@ const SuggestedUser = ({ user, setUser }) => {
           onClick={onFollowUSer}
           isLoading={isUpdating}
           {...homeButton}
+          _hover={{ transform: "translate(2px, 2px)", boxShadow: "none" }}
         >
           {isFollowing ? "Unfollow" : "FOLLOW"}
         </Button>
