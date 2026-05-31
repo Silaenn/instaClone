@@ -1,5 +1,4 @@
 import { Box, Flex, Spinner, useBreakpointValue } from "@chakra-ui/react";
-import React from "react";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import { useLocation } from "react-router-dom";
 import { auth } from "../../firebase/firebase";

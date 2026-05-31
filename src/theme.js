@@ -61,18 +61,22 @@ const components = {
     variants: {
       solid: {
         bg: "retro.main",
+        color: "black",
         boxShadow: "4px 4px 0px 0px #000",
         _hover: {
           bg: "retro.main",
+          color: "black",
           transform: "translate(-2px, -2px)",
           boxShadow: "6px 6px 0px 0px #000",
         },
       },
       outline: {
         bg: "white",
+        color: "black",
         boxShadow: "4px 4px 0px 0px #000",
         _hover: {
           bg: "white",
+          color: "black",
           transform: "translate(-2px, -2px)",
           boxShadow: "6px 6px 0px 0px #000",
         },
@@ -100,9 +104,15 @@ const components = {
             color: "black",
             opacity: 0.6,
           },
+          _hover: {
+            borderColor: "black",
+            boxShadow: "6px 6px 0px 0px #000",
+            transform: "translate(-2px, -2px)",
+          },
           _focus: {
             borderColor: "black",
             boxShadow: "4px 4px 0px 0px #000",
+            transform: "translate(-2px, -2px)",
           },
         },
       },
