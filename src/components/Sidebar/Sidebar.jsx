@@ -6,6 +6,8 @@ import { BiLogOut } from "react-icons/bi";
 import useLogout from "../../hooks/useLogout";
 import SidebarItems from "./SidebarItems";
 import { homeSurface } from "../../styles/homeStyles";
+import { motion } from "framer-motion";
+import { slideInLeftVariant } from "../../animations/variants";
 
 const Sidebar = () => {
   const { handleLogout, isLoggingOut } = useLogout();
@@ -20,6 +22,10 @@ const Sidebar = () => {
       px={{ base: 2, md: 4 }}
     >
       <Flex
+        as={motion.div}
+        variants={slideInLeftVariant}
+        initial="hidden"
+        animate="visible"
         direction={"column"}
         gap={8}
         w="full"
