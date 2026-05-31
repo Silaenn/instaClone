@@ -40,7 +40,6 @@ const Sidebar = () => {
           <Link
             to={"/"}
             as={RouterLink}
-            pl={2}
             cursor={"pointer"}
             fontSize="2xl"
             fontWeight={900}
@@ -53,6 +52,7 @@ const Sidebar = () => {
             border="3px solid black"
             boxShadow="4px 4px 0px 0px #BEF264"
             w="full"
+            display="block"
             textAlign="center"
           >
             THREADBOX
