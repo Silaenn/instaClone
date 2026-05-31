@@ -56,11 +56,17 @@ const Signup = () => {
           type={showPassword ? "text" : "password"}
         />
 
-        <InputRightElement h={"full"}>
+        <InputRightElement h={"full"} pr={2} pointerEvents={"auto"} display="flex" alignItems="center" zIndex={1}>
           <Button
             variant={"ghost"}
             size={"sm"}
             onClick={() => setShowPassword(!showPassword)}
+            opacity={1}
+            bg="transparent"
+            color="black"
+            _hover={{ bg: "transparent" }}
+            _active={{ bg: "transparent" }}
+            aria-label={showPassword ? "Hide password" : "Show password"}
           >
             {showPassword ? <ViewIcon /> : <ViewOffIcon />}
           </Button>
