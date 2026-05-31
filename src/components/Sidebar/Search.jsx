@@ -29,6 +29,12 @@ const Search = () => {
     getUserProfile(searchRef.current.value);
   };
 
+  const handleClose = () => {
+    onClose();
+    if (searchRef.current) searchRef.current.value = "";
+    setUser(null);
+  };
+
   return (
       <>
         <Tooltip
@@ -54,7 +60,7 @@ const Search = () => {
             </Flex>
         </Tooltip>
 
-      <Modal isOpen={isOpen} onClose={onClose} motionPreset="slideInLeft">
+      <Modal isOpen={isOpen} onClose={handleClose} motionPreset="slideInLeft">
         <ModalOverlay />
         <ModalContent {...homeModal}>
           <ModalHeader fontWeight={900} textTransform="uppercase">Search user</ModalHeader>
