@@ -40,7 +40,7 @@ const AuthForm = () => {
             border="4px solid black"
             boxShadow="6px 6px 0px 0px #BEF264"
           >
-            VIBE
+            THREADBOX
           </Text>
 
           {isLogin ? <Login /> : <Signup />}

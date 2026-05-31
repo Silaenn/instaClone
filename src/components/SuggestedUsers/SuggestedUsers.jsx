@@ -50,7 +50,7 @@ const SuggestedUsers = () => {
           fontWeight={900}
           textDecoration="underline"
         >
-          VIBE TEAM
+          THREADBOX TEAM
         </Link>
       </Box>
     </VStack>

@@ -33,10 +33,18 @@ const Sidebar = () => {
           pl={2}
           display={{ base: "none", md: "block" }}
           cursor={"pointer"}
+          fontSize="2xl"
+          fontWeight={900}
+          textTransform="uppercase"
+          letterSpacing="-1px"
+          bg="black"
+          color="white"
+          px={3}
+          py={2}
+          border="3px solid black"
+          boxShadow="4px 4px 0px 0px #BEF264"
         >
-          <Box p={2} bg="black" color="white" display="inline-block">
-            <InstagramLogo />
-          </Box>
+          THREADBOX
         </Link>
 
         <Link
@@ -50,8 +58,12 @@ const Sidebar = () => {
             bg: "retro.main",
           }}
           w={{ base: 10 }}
+          fontSize="lg"
+          fontWeight={900}
+          textTransform="uppercase"
+          color="white"
         >
-          <InstagramMobileLogo />
+          TB
         </Link>
 
         <Flex direction={"column"} gap={5} cursor={"pointer"}>

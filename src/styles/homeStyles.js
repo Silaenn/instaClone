@@ -58,6 +58,7 @@ export const sidebarItem = {
   gap: 4,
   border: "2px solid black",
   bg: "white",
+  color: "black",
   px: { base: 2, md: 3 },
   py: { base: 2, md: 3 },
   boxShadow: "4px 4px 0px 0px #000",
