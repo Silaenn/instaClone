@@ -33,7 +33,7 @@ const useEditProfile = () => {
 
       const updatedUser = {
         ...authUser,
-        fullName: inputs.fulName || authUser.fullName,
+        fullName: inputs.fullName || authUser.fullName,
         username: inputs.username || authUser.username,
         bio: inputs.bio || authUser.bio,
         profilePicURL: URL || authUser.profilePicURL,
@@ -47,6 +47,8 @@ const useEditProfile = () => {
       console.log(updatedUser);
     } catch (error) {
       showToast("Error", error.message, "error");
+    } finally {
+      setIsUpdating(false);
     }
   };
 

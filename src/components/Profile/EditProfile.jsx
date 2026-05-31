@@ -15,7 +15,7 @@ import {
   ModalOverlay,
   Stack,
 } from "@chakra-ui/react";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import useAuthStore from "../../store/authStore";
 import usePreviewImg from "../../hooks/usePreviewImg";
 import useEditProfile from "../../hooks/useEditProfile";
@@ -32,6 +32,13 @@ const EditProfile = ({ isOpen, onClose }) => {
   const { handleImageChange, selectedFile, setSelectedFile } = usePreviewImg();
   const { isUpdating, editProfile } = useEditProfile();
   const showToast = useShowToast();
+
+  useEffect(() => {
+    // reset local inputs when modal opens or authUser changes so fields reflect latest saved data
+    setInputs({ fullName: "", username: "", bio: "" });
+    // also clear selected file when opening
+    // (do not close modal here)
+  }, [isOpen, authUser]);
 
   const handleEditProfile = async () => {
     try {
