@@ -19,7 +19,7 @@ const PageLayout = ({ children }) => {
     <Flex flexDir={canRenderNavbar ? "column" : "row"}>
       {/* sidebar on the left */}
       {canRenderSidebar && !isMobile ? (
-        <Box w={{ base: "70px", md: "240px" }}>
+        <Box w={{ base: "70px", md: "300px" }}>
           <Sidebar />
         </Box>
       ) : null}
@@ -30,7 +30,7 @@ const PageLayout = ({ children }) => {
       {/* the page content the right */}
       <Box
         flex={1}
-        w={{ base: canRenderSidebar && !isMobile ? "calc(100% - 70px)" : "full", md: "calc(100% - 240px)" }}
+        w={{ base: canRenderSidebar && !isMobile ? "calc(100% - 70px)" : "full", md: "calc(100% - 270px)" }}
         mx={"auto"}
       >
         {children}
