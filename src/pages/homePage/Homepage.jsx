@@ -1,15 +1,25 @@
 import { Box, Container, Flex, Grid, Text, VStack } from "@chakra-ui/react";
 import React from "react";
+import { motion } from "framer-motion";
 import FeedPosts from "../../components/FeedPosts/FeedPosts";
 import SuggestedUsers from "../../components/SuggestedUsers/SuggestedUsers";
 import { homeSurface, homeSurfaceSoft, homeSectionTitle } from "../../styles/homeStyles";
+import { slideInDownVariant, slideInRightVariant } from "../../animations/variants";
+
+const MotionBox = motion(Box);
 
 const Homepage = () => {
   return (
     <Container maxW={"container.xl"} py={{ base: 4, md: 6, lg: 8 }} px={{ base: 2, md: 4 }}>
       <Grid templateColumns={{ base: "1fr", xl: "minmax(0, 1.65fr) minmax(320px, 0.85fr)" }} gap={{ base: 6, xl: 8 }} alignItems="start">
         <VStack alignItems="stretch" spacing={6}>
-          <Box {...homeSurface} p={{ base: 4, md: 6 }}>
+          <MotionBox
+            {...homeSurface}
+            p={{ base: 4, md: 6 }}
+            variants={slideInDownVariant}
+            initial="hidden"
+            animate="visible"
+          >
             <Text {...homeSectionTitle}>Home</Text>
             <Flex
               direction={{ base: "column", md: "row" }}
@@ -38,21 +48,24 @@ const Homepage = () => {
                 Premium retro
               </Box>
             </Flex>
-          </Box>
+          </MotionBox>
 
           <FeedPosts />
         </VStack>
 
-        <Box
+        <MotionBox
           display={{ base: "none", xl: "block" }}
           position="sticky"
           top={6}
           alignSelf="start"
+          variants={slideInRightVariant}
+          initial="hidden"
+          animate="visible"
         >
           <Box {...homeSurfaceSoft} p={4}>
             <SuggestedUsers />
           </Box>
-        </Box>
+        </MotionBox>
       </Grid>
     </Container>
   );

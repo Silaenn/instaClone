@@ -7,14 +7,12 @@ import {
   Text,
   VStack,
 } from "@chakra-ui/react";
-import React, { useState } from "react";
+import React from "react";
 import GoogleAuth from "./GoogleAuth";
 import Signup from "./Signup";
 import Login from "./Login";
 
-const AuthForm = () => {
-  const [isLogin, setIsLogin] = useState(true);
-
+const AuthForm = ({ isLogin, setIsLogin }) => {
   return (
     <>
       <Box
