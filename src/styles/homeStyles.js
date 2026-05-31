@@ -53,6 +53,17 @@ export const homeSectionTitle = {
   color: "black",
 };
 
+// Reusable Hover/Active patterns
+export const retroHover = {
+  transform: "translate(-2px, -2px)",
+  boxShadow: "6px 6px 0px 0px #000",
+};
+
+export const retroActive = {
+  transform: "translate(2px, 2px)",
+  boxShadow: "none",
+};
+
 export const sidebarItem = {
   alignItems: "center",
   gap: 4,
@@ -65,7 +76,8 @@ export const sidebarItem = {
   transition: "0.1s",
   _hover: {
     bg: "retro.main",
-    transform: "translate(-2px, -2px)",
+    ...retroHover,
     boxShadow: { base: "6px 6px 0px 0px #000", md: "none", lg: "6px 6px 0px 0px #000" },
   },
+  _active: retroActive,
 };

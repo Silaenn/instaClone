@@ -30,7 +30,8 @@ const SuggestedUsers = () => {
            <Text
              fontSize={12}
              fontWeight={900}
-             _hover={{ color: "retro.pink" }}
+             _hover={{ color: "retro.pink", transform: "scale(1.05)" }}
+             transition="0.2s"
              cursor={"pointer"}
              textDecoration="underline"
            >

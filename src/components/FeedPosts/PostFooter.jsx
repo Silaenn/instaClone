@@ -115,15 +115,12 @@ const PostFooter = ({ post, isProfilePage, creatorProfile }) => {
                 size="sm"
                 bg="retro.main"
                 color="black"
-                fontWeight={800}
-                borderRadius={0}
-                borderLeft="2px solid black"
-                _hover={{ bg: "black", color: "white" }}
                 onClick={handleSubmitComment}
                 isLoading={isCommenting}
                 h="full"
                 w="full"
                 {...homeButton}
+                _hover={{ bg: "retro.pink", color: "white", transform: "translate(2px, 2px)", boxShadow: "none" }}
               >
                 POST
               </Button>

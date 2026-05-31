@@ -15,7 +15,8 @@ const ProfileTabs = () => {
         p="3"
         gap={2}
         cursor={"pointer"}
-        _hover={{ bg: "white" }}
+        transition={"0.2s"}
+        _hover={{ bg: "retro.main" }}
       >
         <Box fontSize={20}>
           <BsGrid3X3 strokeWidth={1} />
@@ -25,7 +26,14 @@ const ProfileTabs = () => {
         </Text>
       </Flex>
 
-      <Flex alignItems={"center"} p="3" gap={2} cursor={"pointer"} _hover={{ bg: "white" }}>
+      <Flex 
+        alignItems={"center"} 
+        p="3" 
+        gap={2} 
+        cursor={"pointer"} 
+        transition={"0.2s"}
+        _hover={{ bg: "retro.main" }}
+      >
         <Box fontSize={20}>
           <BsBookmark />
         </Box>
@@ -34,7 +42,14 @@ const ProfileTabs = () => {
         </Text>
       </Flex>
 
-      <Flex alignItems={"center"} p="3" gap={2} cursor={"pointer"} _hover={{ bg: "white" }}>
+      <Flex 
+        alignItems={"center"} 
+        p="3" 
+        gap={2} 
+        cursor={"pointer"} 
+        transition={"0.2s"}
+        _hover={{ bg: "retro.main" }}
+      >
         <Box fontSize={20}>
           <BsSuitHeart />
         </Box>

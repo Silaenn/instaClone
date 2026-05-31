@@ -115,7 +115,7 @@ const Sidebar = () => {
             bg={"retro.pink"}
             color={"white"}
             border={"2px solid black"}
-            _hover={{ bg: "black", color: "white", transform: "translate(2px, 2px)", boxShadow: "none" }}
+            _hover={{ transform: "translate(2px, 2px)", boxShadow: "none" }}
             boxShadow={{ base: "4px 4px 0px 0px #000", md: "none", lg: "4px 4px 0px 0px #000" }}
             borderRadius={0}
             p={2}

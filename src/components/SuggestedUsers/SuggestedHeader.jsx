@@ -25,15 +25,10 @@ const SuggestedHeader = () => {
         size={"sm"}
         bg={"retro.pink"}
         color={"white"}
-        border="2px solid black"
-        _hover={{ bg: "black" }}
-        fontSize={12}
-        fontWeight={900}
-        borderRadius={0}
-        boxShadow="3px 3px 0px 0px #000"
         onClick={handleLogout}
         isLoading={isLoggingOut}
         {...homeButton}
+        _hover={{ transform: "translate(2px, 2px)", boxShadow: "none" }}
       >
         LOG OUT
       </Button>

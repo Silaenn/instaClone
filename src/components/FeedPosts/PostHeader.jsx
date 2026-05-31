@@ -55,17 +55,18 @@ const PostHeader = ({ post, creatorProfile }) => {
 
       <Box cursor={"pointer"} flexShrink={0}>
         <Button
-        size={"xs"}
-        bg={isFollowing ? "black" : "retro.main"}
-        color={isFollowing ? "white" : "black"}
-        onClick={handleFollowUser}
-        isLoading={isUpdating}
-        fontSize={12}
-        fontWeight={"extrabold"}
-        px={4}
-        {...homeButton}
+          size={"xs"}
+          bg={isFollowing ? "black" : "retro.main"}
+          color={isFollowing ? "white" : "black"}
+          onClick={handleFollowUser}
+          isLoading={isUpdating}
+          fontSize={12}
+          fontWeight={"extrabold"}
+          px={4}
+          {...homeButton}
+          _hover={{ transform: "translate(2px, 2px)", boxShadow: "none" }}
         >
-        {isFollowing ? "Unfollow" : "Follow"}
+          {isFollowing ? "Unfollow" : "Follow"}
         </Button>
       </Box>
     </Flex>
