@@ -27,12 +27,26 @@ const Navbar = () => {
         </Link>
         <Flex gap={4}>
           <Link to="/auth">
-            <Button {...homeButton} bg={"retro.main"} size={"sm"}>
+            <Button
+              {...homeButton}
+              bg={"retro.main"}
+              size={"sm"}
+              _hover={{ transform: "translate(2px, 2px)", boxShadow: "none" }}
+              _active={{ transform: "translate(2px, 2px)", boxShadow: "none" }}
+              transition="0.06s"
+            >
               Login
             </Button>
           </Link>
           <Link to="/auth">
-            <Button {...homeButton} bg={"white"} size={"sm"}>
+            <Button
+              {...homeButton}
+              bg={"white"}
+              size={"sm"}
+              _hover={{ transform: "translate(2px, 2px)", boxShadow: "none" }}
+              _active={{ transform: "translate(2px, 2px)", boxShadow: "none" }}
+              transition="0.06s"
+            >
               Signup
             </Button>
           </Link>
