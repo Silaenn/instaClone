@@ -1,4 +1,3 @@
-import React from "react";
 import PostHeader from "./PostHeader";
 import PostFooter from "./PostFooter";
 import { Box, Image } from "@chakra-ui/react";
@@ -16,8 +15,8 @@ const FeedPost = ({ post }) => {
       p={{ base: 3, md: 4 }}
     >
       <PostHeader post={post} creatorProfile={userProfile} />
-      <Box my={4} borderRadius={0} overflow={"hidden"} border="3px solid black" bg="black" boxShadow="4px 4px 0px 0px #000">
-        <Image src={post.imageURL} alt={"FEED POST IMG"} w="full" objectFit="contain" />
+      <Box my={4} overflow={"hidden"} border="3px solid black" bg="black" boxShadow="4px 4px 0px 0px #000" aspectRatio={1}>
+        <Image src={post.imageURL} alt={"FEED POST IMG"} w="full" h="full" objectFit="cover" />
       </Box>
       <PostFooter post={post} creatorProfile={userProfile} />
     </Box>
