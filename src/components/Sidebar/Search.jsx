@@ -23,7 +23,7 @@ import { homeButton, homeInput, homeModal, sidebarItem } from "../../styles/home
 const Search = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const searchRef = useRef(null);
-  const { user, isLoading, getUserProfile, setUser } = useSearchUser();
+  const { user, isLoading, getUserProfile, setUser, notFound, setNotFound } = useSearchUser();
   const handleSearchUser = (e) => {
     e.preventDefault();
     getUserProfile(searchRef.current.value);
@@ -33,6 +33,7 @@ const Search = () => {
     onClose();
     if (searchRef.current) searchRef.current.value = "";
     setUser(null);
+    if (setNotFound) setNotFound(false);
   };
 
   return (
@@ -100,7 +101,13 @@ const Search = () => {
                 <SuggestedUser user={user} setUser={setUser} />
               </Box>
             )}
-            {!user && !isLoading && (
+            {notFound && !isLoading && (
+              <Box mt={4} p={4} border="2px dashed black" bg="white">
+                No users found.
+              </Box>
+            )}
+
+            {!notFound && !user && !isLoading && (
               <Box mt={4} p={4} border="2px dashed black" bg="white">
                 Search a username to preview the profile.
               </Box>
