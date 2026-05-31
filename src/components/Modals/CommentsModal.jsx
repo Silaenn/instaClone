@@ -54,7 +54,6 @@ const CommentsModal = ({ isOpen, onClose, post }) => {
             overflowY={"auto"}
             ref={commentsContainerRef}
             p={2}
-            border="2px solid black"
             bg="white"
           >
             {post.comments.map((comment, idx) => (
