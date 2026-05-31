@@ -6,7 +6,7 @@ import Home from "./Home";
 
 const SidebarItems = () => {
   return (
-    <Flex direction="column" gap="20px" width="100%">
+    <Flex direction={{ base: "row", md: "column" }} gap={{ base: 2, md: 5 }} width="100%" justifyContent={{ base: "space-around", md: "flex-start" }}>
       <Home />
       <Search />
       <CreatePost />

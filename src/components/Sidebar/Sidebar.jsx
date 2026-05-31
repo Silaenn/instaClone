@@ -37,7 +37,7 @@ const Sidebar = () => {
           to={"/"}
           as={RouterLink}
           pl={2}
-          display={{ base: "none", md: "block" }}
+          display={{ base: "none", lg: "block" }}
           cursor={"pointer"}
           fontSize="2xl"
           fontWeight={900}
@@ -57,7 +57,7 @@ const Sidebar = () => {
           to={"/"}
           as={RouterLink}
           p={2}
-          display={{ base: "block", md: "none" }}
+          display={{ base: "block", lg: "none" }}
           cursor={"pointer"}
           bg="black"
           _hover={{
@@ -85,6 +85,7 @@ const Sidebar = () => {
           fontSize={12}
           fontWeight={700}
           lineHeight={1.5}
+          display={{ base: "none", lg: "block" }}
         >
           Home feels better when the surface is calm and the accents do the work.
         </Box>
@@ -96,7 +97,7 @@ const Sidebar = () => {
           placement="right"
           ml={1}
           openDelay={500}
-          display={{ base: "block", md: "none" }}
+          display={{ base: "block", lg: "none" }}
         >
           <Flex
             onClick={handleLogout}
@@ -109,14 +110,14 @@ const Sidebar = () => {
             boxShadow={"4px 4px 0px 0px #000"}
             borderRadius={0}
             p={2}
-            w={{ base: 12, md: "full" }}
+            w={{ base: 12, lg: "full" }}
             mt={"auto"}
-            justifyContent={{ base: "center", md: "flex-start" }}
+            justifyContent={{ base: "center", lg: "flex-start" }}
             transition={"0.1s"}
           >
             <BiLogOut size={25} />
             <Button
-              display={{ base: "none", md: "block" }}
+              display={{ base: "none", lg: "block" }}
               variant={"ghost"}
               _hover={{ bg: "transparent" }}
               isLoading={isLoggingOut}

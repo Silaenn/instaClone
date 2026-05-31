@@ -1,5 +1,6 @@
-import { Button, Container, Flex, Image } from "@chakra-ui/react";
+import { Button, Container, Flex, Image, Box } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
+import { homeButton } from "../../styles/homeStyles";
 
 const Navbar = () => {
   return (
@@ -8,21 +9,25 @@ const Navbar = () => {
         w={"full"}
         justifyContent={{ base: "center", sm: "space-between" }}
         alignItems={"center"}
+        bg="white"
+        border="3px solid black"
+        p={4}
+        boxShadow="8px 8px 0px 0px #000"
       >
         <Image
           src="/logo.png"
-          h={20}
+          h={12}
           display={{ base: "none", sm: "block" }}
           cursor={"pointer"}
         />
         <Flex gap={4}>
           <Link to="/auth">
-            <Button colorScheme={"blue"} size={"sm"}>
+            <Button {...homeButton} bg={"retro.main"} size={"sm"}>
               Login
             </Button>
           </Link>
           <Link to="/auth">
-            <Button variant={"outline"} size={"sm"}>
+            <Button {...homeButton} bg={"white"} size={"sm"}>
               Signup
             </Button>
           </Link>

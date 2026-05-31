@@ -30,30 +30,29 @@ const Search = () => {
   };
 
   return (
-    <>
-      <Tooltip
-        hasArrow
-        label={"Search"}
-        placement="right"
-        ml={1}
-        openDelay={500}
-        display={{ base: "block", md: "none" }}
-      >
-        <Flex
-          alignItems={"center"}
-          gap={4}
-          borderRadius={0}
-          p={2}
-          w={{ base: 12, md: "full" }}
-          justifyContent={{ base: "center", md: "flex-start" }}
-          {...sidebarItem}
-          onClick={onOpen}
-          cursor="pointer"
+      <>
+        <Tooltip
+          hasArrow
+          label={"Search"}
+          placement="right"
+          ml={1}
+          openDelay={500}
+          display={{ base: "block", lg: "none" }}
         >
-          <SearchLogo />
-          <Box display={{ base: "none", md: "block" }} fontWeight="800">Search</Box>
-        </Flex>
-      </Tooltip>
+          <Flex
+            alignItems={"center"}
+            gap={4}
+            borderRadius={0}
+            p={2}
+            w={{ base: 12, lg: "full" }}
+            justifyContent={{ base: "center", lg: "flex-start" }}
+            onClick={onOpen}
+            {...sidebarItem}
+          >
+            <SearchLogo />
+            <Box display={{ base: "none", lg: "block" }} fontWeight="800">Search</Box>
+          </Flex>
+        </Tooltip>
 
       <Modal isOpen={isOpen} onClose={onClose} motionPreset="slideInLeft">
         <ModalOverlay />

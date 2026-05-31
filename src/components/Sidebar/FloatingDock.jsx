@@ -3,16 +3,22 @@ import SidebarItems from "./SidebarItems";
 
 const FloatingDock = () => {
   return (
-    <Box position="fixed" bottom="20px" left="50%" transform="translateX(-50%)" zIndex={10} w="90%" maxW="400px">
+    <Box 
+      position="fixed" 
+      bottom="0" 
+      left="0" 
+      right="0" 
+      zIndex={10} 
+      bg="white" 
+      borderTop="3px solid black"
+      p={2}
+      pb={{ base: 4, sm: 2 }} // Extra padding for safe area on some mobile browsers
+    >
       <Flex
-        bg="whiteAlpha.800"
-        backdropFilter="blur(10px)"
-        border="2px solid"
-        borderColor="retro.pink"
-        borderRadius="full"
-        p={2}
         justifyContent="space-around"
-        boxShadow="0px 4px 20px rgba(0,0,0,0.1)"
+        alignItems="center"
+        maxW="500px"
+        mx="auto"
       >
         <SidebarItems />
       </Flex>

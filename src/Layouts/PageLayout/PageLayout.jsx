@@ -19,7 +19,7 @@ const PageLayout = ({ children }) => {
     <Flex flexDir={canRenderNavbar ? "column" : "row"}>
       {/* sidebar on the left */}
       {canRenderSidebar && !isMobile ? (
-        <Box w={{ base: "70px", md: "300px" }}>
+        <Box w={{ base: "70px", lg: "270px" }}>
           <Sidebar />
         </Box>
       ) : null}
@@ -30,15 +30,20 @@ const PageLayout = ({ children }) => {
       {/* the page content the right */}
       <Box
         flex={1}
-        w={{ base: canRenderSidebar && !isMobile ? "calc(100% - 70px)" : "full", md: "calc(100% - 270px)" }}
+        w={{ 
+          base: "full", 
+          md: canRenderSidebar ? "calc(100% - 70px)" : "full", 
+          lg: canRenderSidebar ? "calc(100% - 270px)" : "full" 
+        }}
         mx={"auto"}
+        pb={{ base: canRenderSidebar ? "80px" : 0, md: 0 }} // Add padding on mobile if bottom bar is present
       >
         {children}
       </Box>
       {canRenderSidebar && isMobile && <FloatingDock />}
     </Flex>
   );
-};
+  };
 
 export default PageLayout;
 

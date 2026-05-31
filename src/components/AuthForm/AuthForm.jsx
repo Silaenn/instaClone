@@ -24,7 +24,7 @@ const AuthForm = ({ isLogin, setIsLogin }) => {
       >
         <VStack spacing={6}>
           <Text
-            fontSize={"5xl"}
+            fontSize={{ base: "3xl", md: "5xl" }}
             fontWeight={900}
             fontFamily="'Space Grotesk', sans-serif"
             letterSpacing={"-2px"}

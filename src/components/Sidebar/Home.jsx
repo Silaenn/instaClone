@@ -11,7 +11,7 @@ const Home = () => {
       placement="right"
       ml={1}
       openDelay={500}
-      display={{ base: "block", md: "none" }}
+      display={{ base: "block", lg: "none" }}
     >
       <Link
         display={"flex"}
@@ -21,12 +21,12 @@ const Home = () => {
         gap={4}
         borderRadius={0}
         p={2}
-        w={{ base: 12, md: "full" }}
-        justifyContent={{ base: "center", md: "flex-start" }}
+        w={{ base: 12, lg: "full" }}
+        justifyContent={{ base: "center", lg: "flex-start" }}
         {...sidebarItem}
       >
         <AiFillHome size={25} />
-        <Box display={{ base: "none", md: "block" }} fontWeight="800">Home</Box>
+        <Box display={{ base: "none", lg: "block" }} fontWeight="800">Home</Box>
       </Link>
     </Tooltip>
   );
