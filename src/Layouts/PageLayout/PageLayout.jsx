@@ -19,7 +19,7 @@ const PageLayout = ({ children }) => {
     <Flex flexDir={canRenderNavbar ? "column" : "row"}>
       {/* sidebar on the left */}
       {canRenderSidebar && !isMobile ? (
-        <Box w={{ base: "70px", lg: "270px" }}>
+        <Box w={{ base: "70px", md: "70px", lg: "300px" }}>
           <Sidebar />
         </Box>
       ) : null}

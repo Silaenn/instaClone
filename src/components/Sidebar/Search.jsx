@@ -45,13 +45,13 @@ const Search = () => {
             borderRadius={0}
             p={2}
             w={{ base: 12, lg: "full" }}
-            justifyContent={{ base: "center", lg: "flex-start" }}
+            justifyContent={{ base: "center", md: "center", lg: "flex-start" }}
             onClick={onOpen}
             {...sidebarItem}
-          >
+            >
             <SearchLogo />
             <Box display={{ base: "none", lg: "block" }} fontWeight="800">Search</Box>
-          </Flex>
+            </Flex>
         </Tooltip>
 
       <Modal isOpen={isOpen} onClose={onClose} motionPreset="slideInLeft">

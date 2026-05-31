@@ -24,7 +24,7 @@ const ProfileLink = () => {
         borderRadius={0}
         p={2}
         w={{ base: 12, lg: "full" }}
-        justifyContent={{ base: "center", lg: "flex-start" }}
+        justifyContent={{ base: "center", md: "center", lg: "flex-start" }}
         {...sidebarItem}
       >
         <Avatar size={"sm"} src={authUser?.profilePicURL || ""} />

@@ -2,14 +2,14 @@ export const homeSurface = {
   bg: "white",
   border: "3px solid black",
   borderRadius: 0,
-  boxShadow: "8px 8px 0px 0px #000",
+  boxShadow: { base: "8px 8px 0px 0px #000", md: "none", lg: "8px 8px 0px 0px #000" },
 };
 
 export const homeSurfaceSoft = {
   bg: "retro.bg",
   border: "2px solid black",
   borderRadius: 0,
-  boxShadow: "4px 4px 0px 0px #000",
+  boxShadow: { base: "4px 4px 0px 0px #000", md: "none", lg: "4px 4px 0px 0px #000" },
 };
 
 export const homeInput = {
@@ -59,13 +59,13 @@ export const sidebarItem = {
   border: "2px solid black",
   bg: "white",
   color: "black",
-  px: { base: 2, md: 3 },
-  py: { base: 2, md: 3 },
-  boxShadow: "4px 4px 0px 0px #000",
+  px: { base: 2, md: 1, lg: 3 },
+  py: { base: 2, md: 2, lg: 3 },
+  boxShadow: { base: "4px 4px 0px 0px #000", md: "none", lg: "4px 4px 0px 0px #000" },
   transition: "0.1s",
   _hover: {
     bg: "retro.main",
     transform: "translate(-2px, -2px)",
-    boxShadow: "6px 6px 0px 0px #000",
+    boxShadow: { base: "6px 6px 0px 0px #000", md: "none", lg: "6px 6px 0px 0px #000" },
   },
 };

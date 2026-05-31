@@ -19,7 +19,7 @@ const Sidebar = () => {
       position={"sticky"}
       top={0}
       left={0}
-      px={{ base: 2, md: 4 }}
+      px={{ base: 2, md: 1, lg: 4 }}
     >
       <Flex
         as={motion.div}
@@ -30,40 +30,47 @@ const Sidebar = () => {
         gap={8}
         w="full"
         height={"full"}
-        p={4}
+        p={{ base: 4, md: 2, lg: 4 }}
+        alignItems={{ base: "center", lg: "stretch" }}
         {...homeSurface}
       >
-        <Link
-          to={"/"}
-          as={RouterLink}
-          pl={2}
-          display={{ base: "none", lg: "block" }}
-          cursor={"pointer"}
-          fontSize="2xl"
-          fontWeight={900}
-          textTransform="uppercase"
-          letterSpacing="-1px"
-          bg="black"
-          color="white"
-          px={3}
-          py={2}
-          border="3px solid black"
-          boxShadow="4px 4px 0px 0px #BEF264"
-        >
-          THREADBOX
-        </Link>
+        <Box w="full">
+          <Link
+            to={"/"}
+            as={RouterLink}
+            pl={2}
+            display={{ base: "none", lg: "block" }}
+            cursor={"pointer"}
+            fontSize="2xl"
+            fontWeight={900}
+            textTransform="uppercase"
+            letterSpacing="-1px"
+            bg="black"
+            color="white"
+            px={3}
+            py={2}
+            border="3px solid black"
+            boxShadow="4px 4px 0px 0px #BEF264"
+            w="full"
+            textAlign="center"
+          >
+            THREADBOX
+          </Link>
+        </Box>
 
         <Link
           to={"/"}
           as={RouterLink}
-          p={2}
-          display={{ base: "block", lg: "none" }}
+          display={{ base: "flex", lg: "none" }}
           cursor={"pointer"}
           bg="black"
           _hover={{
             bg: "retro.main",
           }}
-          w={{ base: 10 }}
+          w={10}
+          h={10}
+          alignItems="center"
+          justifyContent="center"
           fontSize="lg"
           fontWeight={900}
           textTransform="uppercase"
@@ -72,7 +79,7 @@ const Sidebar = () => {
           TB
         </Link>
 
-        <Flex direction={"column"} gap={5} cursor={"pointer"}>
+        <Flex direction={"column"} gap={5} cursor={"pointer"} w="full">
           <SidebarItems />
         </Flex>
 
@@ -107,12 +114,12 @@ const Sidebar = () => {
             color={"white"}
             border={"2px solid black"}
             _hover={{ bg: "black", color: "white", transform: "translate(2px, 2px)", boxShadow: "none" }}
-            boxShadow={"4px 4px 0px 0px #000"}
+            boxShadow={{ base: "4px 4px 0px 0px #000", md: "none", lg: "4px 4px 0px 0px #000" }}
             borderRadius={0}
             p={2}
-            w={{ base: 12, lg: "full" }}
+            w={{ base: 12, md: 12, lg: "full" }}
             mt={"auto"}
-            justifyContent={{ base: "center", lg: "flex-start" }}
+            justifyContent={{ base: "center", md: "center", lg: "flex-start" }}
             transition={"0.1s"}
           >
             <BiLogOut size={25} />
