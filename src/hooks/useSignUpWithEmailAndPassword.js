@@ -1,7 +1,6 @@
 import {
   collection,
   doc,
-  getDoc,
   getDocs,
   query,
   setDoc,
@@ -9,63 +8,46 @@ import {
 } from "firebase/firestore";
 import { auth, firestore } from "../firebase/firebase";
 import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import useAuthStore from "../store/authStore";
-const useSignUpWithEmailAndPassword = () => {
-  const [createUserWithEmailAndPassword, loading, firebaseError] =
-    useCreateUserWithEmailAndPassword(auth);
 
+const useSignUpWithEmailAndPassword = () => {
+  const [createUserWithEmailAndPassword, hookUser, loading, firebaseError] =
+    useCreateUserWithEmailAndPassword(auth);
   const [errorMessage, setErrorMessage] = useState(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const loginUser = useAuthStore((state) => state.login);
 
-  // ref to ignore firebaseError that might be fired after a successful signup
-  const ignoreNextFirebaseError = useRef(false);
-
-  // map firebase error to friendly message when it appears, but ignore if flagged
   useEffect(() => {
-    if (firebaseError) {
-      if (ignoreNextFirebaseError.current) {
-        // clear the flag and ignore this error
-        ignoreNextFirebaseError.current = false;
-        return;
-      }
-      const msg = "Unable to create account. Please check your details.";
-      setErrorMessage(msg);
+    if (firebaseError && !hookUser) {
+      setErrorMessage("Unable to create account. Please check your details.");
     }
-  }, [firebaseError]);
+  }, [firebaseError, hookUser]);
 
   const signup = async (inputs) => {
     setErrorMessage(null);
-    if (
-      !inputs.email ||
-      !inputs.password ||
-      !inputs.username ||
-      !inputs.fullName
-    ) {
-      const msg = "Please fill all the fields";
-      setErrorMessage(msg);
+    setIsSubmitting(true);
+
+    if (!inputs.email || !inputs.password || !inputs.username || !inputs.fullName) {
+      setErrorMessage("Please fill all the fields");
+      setIsSubmitting(false);
       return;
     }
 
     const usersRef = collection(firestore, "users");
-
-    // Create a query against the collection.
     const q = query(usersRef, where("username", "==", inputs.username));
     const querySnapshot = await getDocs(q);
-
     if (!querySnapshot.empty) {
-      const msg = "Username already exists";
-      setErrorMessage(msg);
+      setErrorMessage("Username already exists");
+      setIsSubmitting(false);
       return;
     }
 
     try {
-      const newuser = await createUserWithEmailAndPassword(
-        inputs.email,
-        inputs.password
-      );
-      // if firebase hook reported an error and no newuser, firebaseError effect will handle it
-      if (newuser) {
+      const result = await createUserWithEmailAndPassword(inputs.email, inputs.password);
+      const newuser = result && result.user ? result : null;
+
+      if (newuser && newuser.user) {
         const userDoc = {
           uid: newuser.user.uid,
           email: inputs.email,
@@ -81,17 +63,43 @@ const useSignUpWithEmailAndPassword = () => {
         await setDoc(doc(firestore, "users", newuser.user.uid), userDoc);
         localStorage.setItem("user-info", JSON.stringify(userDoc));
         loginUser(userDoc);
-        // prevent any firebaseError that may arrive shortly after success from showing
-        ignoreNextFirebaseError.current = true;
         setErrorMessage(null);
+      } else if (hookUser) {
+        const userId = hookUser.uid || (hookUser.user && hookUser.user.uid) || null;
+        if (userId) {
+          const userDoc = {
+            uid: userId,
+            email: inputs.email,
+            username: inputs.username,
+            fullName: inputs.fullName,
+            bio: "",
+            profilePicURL: "",
+            followers: [],
+            following: [],
+            posts: [],
+            createdAt: Date.now(),
+          };
+          await setDoc(doc(firestore, "users", userId), userDoc);
+          localStorage.setItem("user-info", JSON.stringify(userDoc));
+          loginUser(userDoc);
+          setErrorMessage(null);
+        }
+      } else if (firebaseError) {
+        setErrorMessage("Unable to create account. Please check your details.");
       }
     } catch (err) {
-      const msg = "Unable to create account. Please try again later.";
-      setErrorMessage(msg);
+      setErrorMessage("Unable to create account. Please try again later.");
       console.error(err);
+    } finally {
+      setIsSubmitting(false);
     }
   };
-  return { loading, error: errorMessage ? { message: errorMessage } : null, signup };
+
+  return {
+    loading: isSubmitting || loading,
+    error: errorMessage ? { message: errorMessage } : null,
+    signup,
+  };
 };
 
 export default useSignUpWithEmailAndPassword;

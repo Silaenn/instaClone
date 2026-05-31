@@ -85,19 +85,6 @@ const Sidebar = () => {
           <SidebarItems />
         </Flex>
 
-        <Box
-          mt="auto"
-          p={3}
-          border="2px solid black"
-          bg="retro.bg"
-          boxShadow="4px 4px 0px 0px #000"
-          fontSize={12}
-          fontWeight={700}
-          lineHeight={1.5}
-          display={{ base: "none", lg: "block" }}
-        >
-          Home feels better when the surface is calm and the accents do the work.
-        </Box>
 
         {/* LOGOUT    */}
         <Tooltip
