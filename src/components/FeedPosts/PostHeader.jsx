@@ -3,8 +3,6 @@ import {
   Box,
   Button,
   Flex,
-  Skeleton,
-  SkeletonCircle,
   Text,
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
@@ -26,30 +24,22 @@ const PostHeader = ({ post, creatorProfile }) => {
       {...homeSurfaceSoft}
     >
       <Flex alignItems={"center"} gap={3} minW={0}>
-        {creatorProfile ? (
-          <Link to={`/${creatorProfile.username}`}>
-            <Avatar
-              src={creatorProfile.profilePicURL}
-              alt="user profile pic"
-              size={"sm"}
-              border={"2px solid black"}
-            />
-          </Link>
-        ) : (
-          <SkeletonCircle size="10" />
-        )}
+        <Link to={`/${creatorProfile.username}`}>
+          <Avatar
+            src={creatorProfile.profilePicURL}
+            alt="user profile pic"
+            size={"sm"}
+            border={"2px solid black"}
+          />
+        </Link>
 
         <Flex fontSize={14} fontWeight={"extrabold"} gap={2} wrap="wrap">
-        {creatorProfile ? (
           <Link to={`/${creatorProfile.username}`}>
             {creatorProfile.username}
           </Link>
-        ) : (
-          <Skeleton w={"100px"} h={"10px"} />
-        )}
-        <Box color={"black"} opacity={0.6} fontWeight={"medium"}>
-          • {timeAgo(post.createdAt)}
-        </Box>
+          <Box color={"black"} opacity={0.6} fontWeight={"medium"}>
+            • {timeAgo(post.createdAt)}
+          </Box>
         </Flex>
       </Flex>
 

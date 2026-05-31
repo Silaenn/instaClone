@@ -87,6 +87,7 @@ const PostFooter = ({ post, isProfilePage, creatorProfile }) => {
               fontWeight={"bold"}
               textDecoration={"underline"}
               onClick={onOpen}
+              mt={2}
             >
               View all {post.comments.length} comments
             </Text>

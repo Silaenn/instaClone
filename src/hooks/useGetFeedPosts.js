@@ -3,7 +3,7 @@ import usePostStore from "../store/postStore";
 import useAuthStore from "../store/authStore";
 import useShowToast from "./useShowToast";
 import useUserProfileStore from "../store/userProfileStore";
-import { collection, getDocs, query, where } from "firebase/firestore";
+import { collection, doc, getDoc, getDocs, query, where } from "firebase/firestore";
 import { firestore } from "../firebase/firebase";
 
 const useGetFeedPosts = () => {
@@ -33,8 +33,16 @@ const useGetFeedPosts = () => {
           feedPosts.push({ id: doc.id, ...doc.data() });
         });
 
-        feedPosts.sort((a, b) => b.createdAt - a.createdAt);
-        setPosts(feedPosts);
+        // Fetch user profiles for each post creator
+        const postsWithProfiles = await Promise.all(
+          feedPosts.map(async (post) => {
+            const userRef = await getDoc(doc(firestore, "users", post.createBy));
+            return { ...post, creatorProfile: userRef.exists() ? userRef.data() : null };
+          })
+        );
+
+        postsWithProfiles.sort((a, b) => b.createdAt - a.createdAt);
+        setPosts(postsWithProfiles);
       } catch (error) {
         showToast("Error", error.message, "error");
       } finally {
@@ -45,7 +53,6 @@ const useGetFeedPosts = () => {
     if (authUser) getFeedPosts();
   }, [authUser, showToast, setPosts, setUserProfile]);
 
-  console.log(posts);
   return { isLoading, posts };
 };
 
