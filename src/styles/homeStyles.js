@@ -43,6 +43,8 @@ export const homeModal = {
   border: "4px solid black",
   borderRadius: 0,
   boxShadow: "12px 12px 0px 0px #000",
+  maxW: { base: "85vw", sm: "xl" },
+  mx: "auto",
 };
 
 export const homeSectionTitle = {
