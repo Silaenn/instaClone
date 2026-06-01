@@ -72,23 +72,49 @@ const ProfileHeaderSkelaton = () => {
       py={10}
       direction={{ base: "column", sm: "row" }}
       justifyContent={"center"}
-      alignItems={"center"}
+      alignItems={{ base: "center", sm: "flex-start" }}
     >
       <Box border="4px solid black" p="4px" borderRadius={0} bg="retro.main">
-        <SkeletonCircle size="24" />
+        <SkeletonCircle size={{ base: "20", md: "24" }} />
       </Box>
 
       <VStack
-        alignItems={{ base: "center", sm: "flex-start" }}
+        alignItems={{ base: "center", sm: "start" }}
         gap={2}
-        mx={"auto"}
         flex={1}
+        w={{ base: "full", sm: "auto" }}
       >
-        <Skeleton height="20px" width="200px" borderRadius={0} />
-        <Flex gap={3}>
-          <Skeleton height="20px" width="120px" borderRadius={0} />
-          <Skeleton height="20px" width="120px" borderRadius={0} />
-          <Skeleton height="20px" width="120px" borderRadius={0} />
+        {/* Username */}
+        <Skeleton 
+          height={{ base: "20px", md: "30px" }} 
+          width={{ base: "150px", sm: "200px" }} 
+          borderRadius={0} 
+        />
+        
+        {/* FullName */}
+        <Skeleton 
+          height="16px" 
+          width={{ base: "120px", sm: "150px" }} 
+          borderRadius={0} 
+        />
+        
+        {/* Bio */}
+        <Skeleton 
+          height="16px" 
+          width={{ base: "160px", sm: "250px" }} 
+          borderRadius={0} 
+        />
+
+        {/* Stats Row */}
+        <Flex 
+          gap={{ base: 2, sm: 4 }} 
+          justifyContent={{ base: "center", sm: "flex-start" }}
+          flexWrap="wrap"
+        >
+          <Skeleton height="32px" width="80px" borderRadius={0} />
+          <Skeleton height="32px" width="100px" borderRadius={0} />
+          <Skeleton height="32px" width="120px" borderRadius={0} />
+          <Skeleton height="32px" width="90px" borderRadius={0} />
         </Flex>
       </VStack>
     </Flex>
