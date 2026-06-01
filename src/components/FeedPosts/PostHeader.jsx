@@ -7,16 +7,20 @@ import {
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import useFollowUser from "../../hooks/useFollowUser";
+import useAuthStore from "../../store/authStore";
 import { timeAgo } from "../../utils/timeAgo";
 import { homeButton, homeSurfaceSoft } from "../../styles/homeStyles";
 
 const PostHeader = ({ post, creatorProfile }) => {
+  const authUser = useAuthStore((state) => state.user);
   // guard missing creatorProfile to avoid runtime error when creating a new post
   const safeCreator =
     creatorProfile ||
     (post && post.createBy
       ? { uid: post.createBy, username: "", profilePicURL: "", followers: [] }
       : null);
+
+  const isOwnPost = authUser?.uid === safeCreator?.uid;
 
   const { handleFollowUser, isFollowing, isUpdating } = useFollowUser(
     safeCreator ? safeCreator.uid || post.createBy : undefined
@@ -68,20 +72,22 @@ const PostHeader = ({ post, creatorProfile }) => {
       </Flex>
 
       <Box cursor={"pointer"} flexShrink={0}>
-        <Button
-          size={"xs"}
-          bg={isFollowing ? "black" : "retro.main"}
-          color={isFollowing ? "white" : "black"}
-          onClick={handleFollowUser}
-          isLoading={isUpdating}
-          fontSize={12}
-          fontWeight={"extrabold"}
-          px={4}
-          {...homeButton}
-          _hover={{ transform: "translate(2px, 2px)", boxShadow: "none" }}
-        >
-          {isFollowing ? "Unfollow" : "Follow"}
-        </Button>
+        {!isOwnPost && (
+          <Button
+            size={"xs"}
+            bg={isFollowing ? "black" : "retro.main"}
+            color={isFollowing ? "white" : "black"}
+            onClick={handleFollowUser}
+            isLoading={isUpdating}
+            fontSize={12}
+            fontWeight={"extrabold"}
+            px={4}
+            {...homeButton}
+            _hover={{ transform: "translate(2px, 2px)", boxShadow: "none" }}
+          >
+            {isFollowing ? "Unfollow" : "Follow"}
+          </Button>
+        )}
       </Box>
     </Flex>
   );
