@@ -120,10 +120,10 @@ const ProfilePost = ({ post }) => {
         isOpen={isOpen}
         onClose={onClose}
         isCentered={true}
-        size={{ base: "3xl", md: "5xl" }}
+        size={{ base: "55vw", md: "5xl" }}
       >
         <ModalOverlay />
-        <ModalContent border="4px solid black" borderRadius={0} boxShadow="12px 12px 0px 0px #000">
+        <ModalContent border="4px solid black" borderRadius={0} boxShadow={{ base: "none", md: "12px 12px 0px 0px #000" }} maxW={{ base: "95vw", sm: "3xl", md: "5xl" }}>
           <ModalCloseButton zIndex={10} bg="retro.pink" borderRadius={0} border="2px solid black" top="-10px" right="-10px" />
           <ModalBody bg={"retro.bg"} pb={5} p={0}>
             <Flex
