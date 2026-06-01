@@ -14,25 +14,39 @@ import ProfilePosts from "../../components/Profile/ProfilePosts";
 import useGetUserProfileByUsername from "../../hooks/useGetUserProfileByUsername";
 import { useParams } from "react-router-dom";
 import { Link as RouterLink } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion";
 
 const ProfilePage = () => {
   const { username } = useParams();
   const { isLoading, userProfile } = useGetUserProfileByUsername(username);
-
   const userNotFound = !isLoading && !userProfile;
   if (userNotFound) return <UserNotFound />;
+
   return (
     <Container maxW={"container.lg"} py={5}>
-      <Flex
-        py={10}
-        px={4}
-        pl={{ base: 4, md: 10 }}
-        w={"full"}
-        mx={"auto"}
-        flexDirection={"column"}
-      >
-        {!isLoading && userProfile && <ProfileHeader />}
-        {isLoading && <ProfileHeaderSkelaton />}
+      <Flex py={10} px={4} pl={{ base: 4, md: 10 }} w={"full"} mx={"auto"} flexDirection={"column"}>
+        <AnimatePresence mode="wait">
+          {isLoading ? (
+            <motion.div
+              key="header-skeleton"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              <ProfileHeaderSkelaton />
+            </motion.div>
+          ) : userProfile ? (
+            <motion.div
+              key="header-data"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.4 }}
+            >
+              <ProfileHeader />
+            </motion.div>
+          ) : null}
+        </AnimatePresence>
       </Flex>
 
       <Flex
