@@ -8,7 +8,8 @@
 
 Aplikasi Instagram clone full-featured dengan **React**, **Firebase**, dan **Chakra UI**. Mencakup authentication, feed posts, user profiles, search, real-time interactions, dan responsive design untuk semua ukuran layar.
 
-![Instagram-Clone](https://github.com/Silaenn/instaClone/assets/131638765/ee61908f-c116-4eb9-946e-f7d48d276018)
+<img width="1920" height="964" alt="THREADBOX" src="https://github.com/user-attachments/assets/438c29a4-679e-4a4c-a121-89231a459932" />
+
 
 ---
 
